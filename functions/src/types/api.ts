@@ -133,9 +133,7 @@ export interface TaskUpdateRequest {
   state: TaskStatus;
 }
 
-export interface MultipleTaskUpdateRequest {
-  [taskId: string]: TaskStatus;
-}
+export type MultipleTaskUpdateRequest = { id: string, state: TaskStatus }[]
 
 export interface ObjectiveUpdateRequest {
   state?: 'completed' | 'uncompleted';

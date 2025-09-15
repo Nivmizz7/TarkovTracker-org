@@ -54,23 +54,23 @@ interface AuthenticatedRequest extends Request {
  *       500:
  *         description: "Internal server error."
  */
-export const getTokenInfo = asyncHandler(async (req: AuthenticatedRequest, res: Response): Promise<void> => {
-  // Token is already validated by middleware and attached to req.apiToken
-  const token = req.apiToken!;
-  
-  const response: ApiResponse = {
-    success: true,
-    data: {
+export const getTokenInfo = asyncHandler(
+  async (req: AuthenticatedRequest, res: Response): Promise<void> => {
+    // Token is already validated by middleware and attached to req.apiToken
+    const token = req.apiToken!;
+
+    const response = {
+      success: true,
       permissions: token.permissions,
       token: token.token,
       owner: token.owner,
       note: token.note,
       calls: token.calls || 0,
-    },
-  };
-  
-  res.status(200).json(response);
-});
+    };
+
+    res.status(200).json(response);
+  }
+);
 
 export default {
   getTokenInfo,
