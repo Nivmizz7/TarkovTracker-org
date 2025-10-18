@@ -10,7 +10,7 @@
             <p class="text-body-2 mb-4">
               {{ $t('page.settings.cards.profile.description') }}
             </p>
-            <v-row class="compact-row">
+            <v-row dense>
               <v-col cols="12" md="6">
                 <v-select
                   v-model="currentGameEdition"
@@ -69,11 +69,11 @@
               type="warning"
               variant="tonal"
               class="mb-4"
-              density="compact"
+              dense
             >
               {{ $t('page.settings.cards.progress.login_required') }}
             </v-alert>
-            <v-row class="compact-row">
+            <v-row dense>
               <v-col cols="12" md="6">
                 <v-btn
                   block
@@ -138,7 +138,7 @@
           <p class="mb-4">
             {{ $t('page.settings.dialogs.reset_mode.description', { mode: resetModeLabel }) }}
           </p>
-          <v-alert type="warning" variant="tonal" class="mb-4" density="compact">
+          <v-alert type="warning" variant="tonal" class="mb-4" dense>
             {{ $t('page.settings.dialogs.reset_mode.warning') }}
           </v-alert>
         </v-card-text>
@@ -161,7 +161,7 @@
     <v-dialog v-model="fullResetDialog" max-width="520">
       <v-card :title="$t('page.settings.dialogs.full_reset.title')">
         <v-card-text>
-          <v-alert type="error" variant="tonal" class="mb-4" density="compact">
+          <v-alert type="error" variant="tonal" class="mb-4" dense>
             {{ $t('page.settings.dialogs.full_reset.warning') }}
           </v-alert>
           <p class="mb-4">
@@ -184,7 +184,6 @@
       </v-card>
     </v-dialog>
   </v-container>
-  <notification-snackbar v-model="resetNotification" />
 </template>
 <script setup lang="ts">
   import { computed, ref } from 'vue';
@@ -196,7 +195,6 @@
   import AccountDeletionCard from '@/features/settings/AccountDeletionCard.vue';
   import type { GameMode } from '@/shared_state';
   import { logger } from '@/utils/logger';
-  import NotificationSnackbar from '@/features/ui/NotificationSnackbar.vue';
 
   const { t } = useI18n({ useScope: 'global' });
   const tarkovStore = useTarkovStore();
@@ -243,17 +241,6 @@
   const resetting = ref(false);
   const fullResetDialog = ref(false);
   const fullResetting = ref(false);
-  const resetNotification = ref({ show: false, message: '', color: 'error' });
-
-  const showResetError = (error: unknown) => {
-    const detail =
-      error instanceof Error ? error.message : typeof error === 'string' ? error : 'Unknown error';
-    resetNotification.value = {
-      show: true,
-      message: `Reset failed. Please try again or contact support. (${detail})`,
-      color: 'error',
-    };
-  };
 
   const resetModeLabel = computed(() => {
     if (!resetDialogMode.value) {
@@ -280,7 +267,6 @@
       closeResetDialog();
     } catch (error) {
       logger.error('Failed to reset gamemode data:', error);
-      showResetError(error);
     } finally {
       resetting.value = false;
     }
@@ -293,7 +279,6 @@
       fullResetDialog.value = false;
     } catch (error) {
       logger.error('Failed to reset account:', error);
-      showResetError(error);
     } finally {
       fullResetting.value = false;
     }
@@ -308,10 +293,5 @@
 
   .w-100 {
     width: 100%;
-  }
-
-  .compact-row {
-    --v-layout-column-gap: 12px;
-    --v-layout-row-gap: 12px;
   }
 </style>

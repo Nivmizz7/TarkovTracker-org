@@ -1,39 +1,16 @@
-import { computed, ref, type Ref, type ComputedRef } from 'vue';
+import { computed, ref } from 'vue';
 import { enableAnalyticsCollection, disableAnalyticsCollection } from '@/plugins/firebase';
 import { logger } from '@/utils/logger';
 
 export type ConsentStatus = 'accepted' | 'rejected' | 'unknown';
 
 const STORAGE_KEY = 'tt-analytics-consent';
-const CLARITY_PROJECT_ID = import.meta.env.VITE_CLARITY_PROJECT_ID;
+const CLARITY_PROJECT_ID = import.meta.env.VITE_CLARITY_PROJECT_ID || 'qw2qze9js7';
 
-interface ConsentRefs {
-  consentStatus: Ref<ConsentStatus>;
-  bannerVisible: Ref<boolean>;
-  hasInitialized: Ref<boolean>;
-  consentGiven: ComputedRef<boolean>;
-  choiceRecorded: ComputedRef<boolean>;
-}
-
-let consentRefs: ConsentRefs | null = null;
-
-const getConsentRefs = (): ConsentRefs => {
-  if (!consentRefs) {
-    const consentStatus = ref<ConsentStatus>('unknown');
-    const bannerVisible = ref(false);
-    const hasInitialized = ref(false);
-    consentRefs = {
-      consentStatus,
-      bannerVisible,
-      hasInitialized,
-      consentGiven: computed(() => consentStatus.value === 'accepted'),
-      choiceRecorded: computed(() => consentStatus.value !== 'unknown'),
-    };
-  }
-  return consentRefs;
-};
+const consentStatus = ref<ConsentStatus>('unknown');
+const bannerVisible = ref(false);
+const hasInitialized = ref(false);
 let clarityBootstrapped = false;
-let clarityConfigLogged = false;
 
 const getStorage = () => {
   if (typeof window === 'undefined') {
@@ -48,17 +25,7 @@ const getStorage = () => {
 };
 
 const bootstrapClarity = () => {
-  if (!CLARITY_PROJECT_ID) {
-    if (!clarityConfigLogged) {
-      logger.warn('Clarity project ID not configured; skipping Clarity initialization.');
-      clarityConfigLogged = true;
-    }
-    return;
-  }
-  if (clarityBootstrapped) {
-    return;
-  }
-  if (typeof window === 'undefined' || typeof document === 'undefined') {
+  if (clarityBootstrapped || typeof window === 'undefined' || typeof document === 'undefined') {
     return;
   }
   clarityBootstrapped = true;
@@ -84,7 +51,7 @@ const bootstrapClarity = () => {
 };
 
 const enableClarity = () => {
-  if (!CLARITY_PROJECT_ID || typeof window === 'undefined') {
+  if (typeof window === 'undefined') {
     return;
   }
   bootstrapClarity();
@@ -94,7 +61,7 @@ const enableClarity = () => {
 };
 
 const disableClarity = () => {
-  if (!CLARITY_PROJECT_ID || typeof window === 'undefined') {
+  if (typeof window === 'undefined') {
     return;
   }
   if (typeof window.clarity === 'function') {
@@ -149,7 +116,6 @@ const clearStoredConsent = (storage: Storage | undefined) => {
 };
 
 const initializeConsent = () => {
-  const { hasInitialized, consentStatus, bannerVisible } = getConsentRefs();
   if (hasInitialized.value) {
     return;
   }
@@ -163,12 +129,10 @@ const initializeConsent = () => {
   } else {
     consentStatus.value = 'unknown';
     bannerVisible.value = true;
-    syncAnalyticsWithConsent('rejected');
   }
 };
 
 const setConsent = (status: 'accepted' | 'rejected') => {
-  const { consentStatus, bannerVisible } = getConsentRefs();
   consentStatus.value = status;
   const storage = getStorage();
   persistConsent(storage, status);
@@ -177,12 +141,10 @@ const setConsent = (status: 'accepted' | 'rejected') => {
 };
 
 const openPreferences = () => {
-  const { bannerVisible } = getConsentRefs();
   bannerVisible.value = true;
 };
 
 const resetConsent = () => {
-  const { consentStatus, bannerVisible } = getConsentRefs();
   consentStatus.value = 'unknown';
   const storage = getStorage();
   clearStoredConsent(storage);
@@ -191,8 +153,10 @@ const resetConsent = () => {
   disableClarity();
 };
 
+const consentGiven = computed(() => consentStatus.value === 'accepted');
+const choiceRecorded = computed(() => consentStatus.value !== 'unknown');
+
 export const usePrivacyConsent = () => {
-  const { consentStatus, bannerVisible, consentGiven, choiceRecorded } = getConsentRefs();
   return {
     consentStatus,
     bannerVisible,
