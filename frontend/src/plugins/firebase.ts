@@ -1,6 +1,6 @@
 import { reactive } from 'vue';
 import { initializeApp, type FirebaseOptions } from 'firebase/app';
-import { getAnalytics } from 'firebase/analytics';
+import { getAnalytics, isSupported, setAnalyticsCollectionEnabled } from 'firebase/analytics';
 import {
   getAuth,
   onAuthStateChanged,
@@ -121,6 +121,22 @@ if (isLocalDevelopment || ['localhost', '127.0.0.1'].includes(window.location.ho
     console.error('Error connecting to Firebase emulators:', error);
   }
 }
+
+// Analytics collection functions
+export const enableAnalyticsCollection = async (): Promise<void> => {
+  if (await isSupported()) {
+    setAnalyticsCollectionEnabled(analytics, true);
+  }
+};
+
+export const disableAnalyticsCollection = (): void => {
+  try {
+    setAnalyticsCollectionEnabled(analytics, false);
+  } catch (error) {
+    console.warn('Error disabling analytics collection:', error);
+  }
+};
+
 export {
   app,
   analytics,

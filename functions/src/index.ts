@@ -512,6 +512,7 @@ export const createTeamHttp = onRequest(
         auth: {
           uid: decodedToken.uid,
           token: decodedToken,
+          rawToken: authToken,
         },
         data: req.body,
         rawRequest: req as unknown as FirebaseRequest,
@@ -590,6 +591,7 @@ export const createTokenHttp = onRequest(
         auth: {
           uid: decodedToken.uid,
           token: decodedToken,
+          rawToken: authToken,
         },
         data: req.body,
         rawRequest: req as unknown as FirebaseRequest,
