@@ -54,6 +54,7 @@ export default [
       '@typescript-eslint/no-explicit-any': 'warn', // TODO: Fix and change to 'error'
       'no-unused-vars': 'off',
       'vue/no-unused-vars': 'off',
+      'vue/no-v-html': 'error',
       'no-debugger': 'off',
       'max-len': ['warn', { code: 100 }],
     },

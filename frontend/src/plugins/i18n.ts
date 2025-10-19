@@ -57,6 +57,8 @@ const i18n: I18n<
   globalInjection: true, // Enable global injection for $t
   locale: languageCode, // Use detected language code
   fallbackLocale: 'en', // Fallback locale
+  warnHtmlInMessage: 'error', // Block locale strings that contain HTML
+  escapeParameterHtml: true, // Ensure interpolated params are HTML-escaped
   messages: typedMessages, // Use the typed and merged messages
   silentTranslationWarn: true, // Suppress translation warnings
   silentFallbackWarn: true, // Suppress fallback warnings
