@@ -62,4 +62,10 @@ pubsub-debug.log
 
 # Task files
 # tasks.json
-# tasks/ 
+# tasks/
+
+# AI IDE directories
+.claude*
+.factory*
+.gemini*
+/bmad
