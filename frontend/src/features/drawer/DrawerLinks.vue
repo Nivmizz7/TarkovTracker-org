@@ -45,6 +45,8 @@
     </drawer-item>
     <drawer-item icon="mdi-api" locale-key="api" to="/api" :is-collapsed="props.isCollapsed">
     </drawer-item>
+    <drawer-item icon="mdi-file-document" locale-key="apidocs" to="/api-docs" :is-collapsed="props.isCollapsed">
+    </drawer-item>
   </v-list>
 </template>
 <script setup>

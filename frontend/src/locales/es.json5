@@ -419,6 +419,8 @@
   },
   navigation_drawer: {
     home: 'Inicio',
+    api: 'API',
+    apidocs: 'API Docs',
     login: 'Iniciar sesión',
     logout: 'Cerrar sesión',
     level: 'Nivel',

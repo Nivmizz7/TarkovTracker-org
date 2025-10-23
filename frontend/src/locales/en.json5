@@ -456,6 +456,7 @@
   navigation_drawer: {
     home: 'Dashboard',
     api: 'API',
+    apidocs: 'API Docs',
     login: 'Log In',
     logout: 'Log Out',
     level: 'Level',

@@ -456,6 +456,7 @@
   navigation_drawer: {
     home: '仪表板',
     api: 'API',
+    apidocs: 'API Docs',
     login: '登录',
     logout: '登出',
     level: '等级',

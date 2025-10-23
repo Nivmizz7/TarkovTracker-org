@@ -429,6 +429,8 @@
   },
   navigation_drawer: {
     home: 'Heimat',
+    api: 'API',
+    apidocs: 'API Docs',
     login: 'Einloggen',
     logout: 'Ausloggen',
     level: 'Level',

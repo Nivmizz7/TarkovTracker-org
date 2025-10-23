@@ -45,6 +45,12 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/pages/TrackerSettings.vue'),
       },
       {
+        name: 'api-docs',
+        path: '/api-docs',
+        meta: { background: 'customs' },
+        component: () => import('@/pages/ApiDocs.vue'),
+      },
+      {
         name: 'privacy',
         path: '/privacy',
         meta: { background: 'sunset' },
