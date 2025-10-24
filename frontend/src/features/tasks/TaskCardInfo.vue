@@ -92,7 +92,9 @@
 
   const lightkeeperRequired = computed(() => props.task.lightkeeperRequired === true);
 
-  const showEodStatus = computed(() => props.task.eodOnly === true && showRequiredRequirementLabels.value);
+  const showEodStatus = computed(
+    () => props.task.eodOnly === true && showRequiredRequirementLabels.value
+  );
 
   const factionImage = computed(() => `/img/factions/${props.task.factionName}.webp`);
 

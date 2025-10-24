@@ -154,12 +154,7 @@
     <!-- Load more indicator -->
     <v-row v-if="hasMoreItems && !loading && !hideoutLoading" justify="center" class="mt-4">
       <v-col cols="12" align="center">
-        <v-btn
-          variant="outlined"
-          color="secondary"
-          :loading="false"
-          @click="loadMoreItems"
-        >
+        <v-btn variant="outlined" color="secondary" :loading="false" @click="loadMoreItems">
           {{ $t('page.neededitems.load_more') }}
         </v-btn>
       </v-col>
@@ -488,7 +483,8 @@
   const handleScroll = debounce(() => {
     const { scrollY } = window;
     const { scrollHeight, clientHeight } = document.documentElement;
-    if (scrollY + clientHeight >= scrollHeight - 100) { // Load more when 100px from bottom
+    if (scrollY + clientHeight >= scrollHeight - 100) {
+      // Load more when 100px from bottom
       loadMoreItems();
     }
   }, 100);

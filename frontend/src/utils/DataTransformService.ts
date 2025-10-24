@@ -1,4 +1,9 @@
-import type { ProgressData, TransformedObjectives, TransformedHideoutParts, TransformedTraderStandings } from './DataMigrationTypes';
+import type {
+  ProgressData,
+  TransformedObjectives,
+  TransformedHideoutParts,
+  TransformedTraderStandings,
+} from '@/utils/DataMigrationTypes';
 
 export const transformTaskObjectives = (
   taskObjectives: ProgressData['taskObjectives']

@@ -30,12 +30,12 @@ function buildTraderMetric(
 }
 
 export function createTraderProgressGetters(stores: ComputedRef<TeamStoresMap>) {
-  const traderLevelsAchieved = computed<TraderLevelsMap>(() =>
-    buildTraderMetric(stores, (entry) => entry?.loyaltyLevel ?? 0) as TraderLevelsMap
+  const traderLevelsAchieved = computed<TraderLevelsMap>(
+    () => buildTraderMetric(stores, (entry) => entry?.loyaltyLevel ?? 0) as TraderLevelsMap
   );
 
-  const traderStandings = computed<TraderStandingMap>(() =>
-    buildTraderMetric(stores, (entry) => entry?.standing ?? 0) as TraderStandingMap
+  const traderStandings = computed<TraderStandingMap>(
+    () => buildTraderMetric(stores, (entry) => entry?.standing ?? 0) as TraderStandingMap
   );
 
   return { traderLevelsAchieved, traderStandings };

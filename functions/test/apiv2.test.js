@@ -39,7 +39,8 @@ vi.mock('firebase-functions/v2/scheduler', () => ({
 // Mock auth middleware - updated for ESM export
 vi.mock('../lib/middleware/auth.js', () => ({
   verifyBearer: vi.fn(async (req, res, next) => {
-    const header = typeof req.get === 'function' ? req.get('Authorization') : req.headers?.Authorization;
+    const header =
+      typeof req.get === 'function' ? req.get('Authorization') : req.headers?.Authorization;
     if (!header) {
       res.status(401).json({ success: false, error: 'Authentication required' });
       return;

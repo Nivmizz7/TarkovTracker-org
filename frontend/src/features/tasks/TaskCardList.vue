@@ -1,6 +1,10 @@
 <template>
   <v-col cols="12" class="task-list-card-stack">
-    <div v-for="(task, taskIndex) in tasks" :key="task.id || taskIndex" class="task-card-stack__item">
+    <div
+      v-for="(task, taskIndex) in tasks"
+      :key="task.id || taskIndex"
+      class="task-card-stack__item"
+    >
       <task-card
         :task="task"
         :active-user-view="activeUserView"
@@ -17,22 +21,13 @@
         size="24"
         class="mr-3"
       />
-      <v-btn variant="tonal" color="secondary" @click="emit('load-more')">
-        Load more tasks
-      </v-btn>
+      <v-btn variant="tonal" color="secondary" @click="emit('load-more')"> Load more tasks </v-btn>
     </div>
   </v-col>
 </template>
 
 <script setup lang="ts">
-  import {
-    defineAsyncComponent,
-    nextTick,
-    onBeforeUnmount,
-    onMounted,
-    ref,
-    watch,
-  } from 'vue';
+  import { defineAsyncComponent, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
   import type { Task } from '@/types/tarkov';
 
   const TaskCard = defineAsyncComponent(() => import('@/features/tasks/TaskCard.vue'));

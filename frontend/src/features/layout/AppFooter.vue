@@ -111,7 +111,11 @@
               <router-link to="/privacy" class="footer-link">Privacy</router-link>
             </div>
             <div v-if="choiceRecorded" class="mb-1">
-              <button type="button" class="footer-link footer-link__button" @click="openPrivacyPreferences">
+              <button
+                type="button"
+                class="footer-link footer-link__button"
+                @click="openPrivacyPreferences"
+              >
                 Privacy Preferences
               </button>
             </div>

@@ -216,7 +216,7 @@ const _initializeBaseProgress = (
   const normalizedGameEdition =
     typeof progressData?.gameEdition === 'number' && Number.isFinite(progressData.gameEdition)
       ? progressData.gameEdition
-      : rootGameEdition ?? 1;
+      : (rootGameEdition ?? 1);
 
   return {
     displayName: progressData?.displayName ?? userId.substring(0, 6),
@@ -561,7 +561,11 @@ const checkAllRequirementsMet = async (
       }
       // For other task requirements, check if they're satisfied based on current progress (legacy format)
       const otherTaskData = taskCompletions[reqTaskId];
-      if (requirementStatus.includes('complete') && otherTaskData?.complete && !otherTaskData?.failed) {
+      if (
+        requirementStatus.includes('complete') &&
+        otherTaskData?.complete &&
+        !otherTaskData?.failed
+      ) {
         return true; // Requirement needs completion and task is complete
       }
       if (

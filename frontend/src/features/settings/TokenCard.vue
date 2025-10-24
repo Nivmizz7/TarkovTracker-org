@@ -6,12 +6,7 @@
         {{ tokenDataRef?.note }}
       </div>
       <v-spacer></v-spacer>
-      <v-chip 
-        :color="gameModeChipColor" 
-        size="small" 
-        variant="tonal"
-        class="ml-2"
-      >
+      <v-chip :color="gameModeChipColor" size="small" variant="tonal" class="ml-2">
         <v-icon :icon="gameModeIcon" size="small" class="mr-1"></v-icon>
         {{ gameModeDisplay }}
       </v-chip>
@@ -143,28 +138,40 @@
   // Game mode display properties
   const gameModeDisplay = computed(() => {
     switch (tokenGameMode.value) {
-      case 'pvp': return 'PvP Only';
-      case 'pve': return 'PvE Only'; 
-      case 'dual': return 'Dual Mode';
-      default: return 'PvP Only';
+      case 'pvp':
+        return 'PvP Only';
+      case 'pve':
+        return 'PvE Only';
+      case 'dual':
+        return 'Dual Mode';
+      default:
+        return 'PvP Only';
     }
   });
 
   const gameModeChipColor = computed(() => {
     switch (tokenGameMode.value) {
-      case 'pvp': return 'blue';
-      case 'pve': return 'green';
-      case 'dual': return 'orange';
-      default: return 'blue';
+      case 'pvp':
+        return 'blue';
+      case 'pve':
+        return 'green';
+      case 'dual':
+        return 'orange';
+      default:
+        return 'blue';
     }
   });
 
   const gameModeIcon = computed(() => {
     switch (tokenGameMode.value) {
-      case 'pvp': return 'mdi-sword-cross';
-      case 'pve': return 'mdi-shield-account';
-      case 'dual': return 'mdi-swap-horizontal-variant';
-      default: return 'mdi-sword-cross';
+      case 'pvp':
+        return 'mdi-sword-cross';
+      case 'pve':
+        return 'mdi-shield-account';
+      case 'dual':
+        return 'mdi-swap-horizontal-variant';
+      default:
+        return 'mdi-sword-cross';
     }
   });
   // Calculate the relative days since the token was created using Intl.RelativeTimeFormat

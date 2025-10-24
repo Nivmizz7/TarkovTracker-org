@@ -231,7 +231,10 @@
     padding: 12px 14px;
     border-radius: 12px;
     background-color: rgba(var(--v-theme-surface-variant), 0.6);
-    transition: background-color 120ms ease, transform 120ms ease, box-shadow 120ms ease;
+    transition:
+      background-color 120ms ease,
+      transform 120ms ease,
+      box-shadow 120ms ease;
   }
 
   .task-settings-card__control:hover {
@@ -278,12 +281,16 @@
 <style lang="scss">
   .task-settings-slide-enter-active,
   .task-settings-slide-leave-active {
-    transition: opacity 160ms ease, transform 160ms ease;
+    transition:
+      opacity 160ms ease,
+      transform 160ms ease;
   }
 
   .task-settings-slide-enter-active :deep(.v-overlay__content),
   .task-settings-slide-leave-active :deep(.v-overlay__content) {
-    transition: opacity 160ms ease, transform 160ms ease;
+    transition:
+      opacity 160ms ease,
+      transform 160ms ease;
   }
 
   .task-settings-slide-enter-from,

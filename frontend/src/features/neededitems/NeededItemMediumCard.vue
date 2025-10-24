@@ -130,8 +130,9 @@
                   style="white-space: pre-line"
                 >
                   <v-icon size="x-small" class="mr-1">mdi-account-child-circle</v-icon
-                  >{{ getDisplayName(userNeed.user) }}
-                  {{ userNeed.count.toLocaleString() }}/{{ neededCount.toLocaleString() }}
+                  >{{ getDisplayName(userNeed.user) }} {{ userNeed.count.toLocaleString() }}/{{
+                    neededCount.toLocaleString()
+                  }}
                 </div>
               </template>
             </i18n-t>

@@ -59,7 +59,9 @@
   const isFactionTask = computed(() => task.value?.factionName != 'Any');
   const factionImage = computed(() => `/img/factions/${task.value?.factionName}.webp`);
   const traderAvatar = computed(() => task.value?.trader?.imageLink);
-  const hasWikiLink = computed(() => typeof task.value?.wikiLink === 'string' && task.value?.wikiLink);
+  const hasWikiLink = computed(() => {
+    return typeof task.value?.wikiLink === 'string' && task.value?.wikiLink;
+  });
 </script>
 <style lang="scss" scoped>
   .task-link__anchor,

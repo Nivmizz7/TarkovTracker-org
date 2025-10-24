@@ -62,7 +62,9 @@ describe('Direct HTTP handlers', () => {
 
     await teamHandler.createTeam(req, res);
 
-    expect(TeamService.prototype.createTeam).toHaveBeenCalledWith('owner-1', { password: 'secret' });
+    expect(TeamService.prototype.createTeam).toHaveBeenCalledWith('owner-1', {
+      password: 'secret',
+    });
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
       success: true,

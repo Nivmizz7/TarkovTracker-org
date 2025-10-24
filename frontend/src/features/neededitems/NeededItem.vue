@@ -125,9 +125,7 @@
       return (
         !tasksCompletions.value?.[need.taskId]?.self &&
         !objectiveCompletions.value?.[need.id]?.self &&
-        ['Any', tarkovStore.getPMCFaction].some(
-          (faction) => faction == rt.factionName
-        )
+        ['Any', tarkovStore.getPMCFaction].some((faction) => faction === rt.factionName)
       );
     } else if (userStore.itemsTeamNonFIRHidden) {
       // Only show if a someone needs the objective
@@ -135,8 +133,7 @@
         ([userTeamId, userStatus]) => {
           const relevantFactions = ['Any', playerFaction.value?.[userTeamId]];
           return (
-            relevantFactions.some((faction) => faction == rt.factionName) &&
-            userStatus === false
+            relevantFactions.some((faction) => faction === rt.factionName) && userStatus === false
           );
         }
       );
@@ -144,8 +141,7 @@
         ([userTeamId, userStatus]) => {
           const relevantFactions = ['Any', playerFaction.value?.[userTeamId]];
           return (
-            relevantFactions.some((faction) => faction == rt.factionName) &&
-            userStatus === false
+            relevantFactions.some((faction) => faction === rt.factionName) && userStatus === false
           );
         }
       );
@@ -156,8 +152,7 @@
           ([userTeamId, userStatus]) => {
             const relevantFactions = ['Any', playerFaction.value?.[userTeamId]];
             return (
-              relevantFactions.some((faction) => faction == rt.factionName) &&
-              userStatus === false
+              relevantFactions.some((faction) => faction === rt.factionName) && userStatus === false
             );
           }
         ) &&
@@ -165,8 +160,7 @@
           ([userTeamId, userStatus]) => {
             const relevantFactions = ['Any', playerFaction.value?.[userTeamId]];
             return (
-              relevantFactions.some((faction) => faction == rt.factionName) &&
-              userStatus === false
+              relevantFactions.some((faction) => faction === rt.factionName) && userStatus === false
             );
           }
         )
@@ -190,8 +184,10 @@
     if (userStore.itemsTeamAllHidden || userStore.itemsTeamHideoutHidden) {
       // Only show if the objective is needed by ourself
       return (
-        (moduleCompletionsForModule.self === undefined || moduleCompletionsForModule.self === false) ||
-        (modulePartCompletionsForPart.self === undefined || modulePartCompletionsForPart.self === false)
+        moduleCompletionsForModule.self === undefined ||
+        moduleCompletionsForModule.self === false ||
+        modulePartCompletionsForPart.self === undefined ||
+        modulePartCompletionsForPart.self === false
       );
     } else {
       return (

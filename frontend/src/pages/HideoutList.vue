@@ -153,7 +153,9 @@
         case 'available':
           return stations.filter(canUpgradeStation);
         case 'maxed':
-          return stations.filter((station) => getStationLevel(station.id) === station.levels.length);
+          return stations.filter(
+            (station) => getStationLevel(station.id) === station.levels.length
+          );
         case 'locked':
           return stations.filter((station) => !canUpgradeStation(station) && hasNextLevel(station));
         case 'all':

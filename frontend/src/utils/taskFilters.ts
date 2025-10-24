@@ -11,11 +11,7 @@ export interface RequirementFilterOptions {
 const LIGHTKEEPER_KEY = 'lightkeeper';
 
 const isLightkeeperTrader = (task: Task): boolean => {
-  const identifiers = [
-    task.trader?.id,
-    task.trader?.name,
-    task.trader?.normalizedName,
-  ];
+  const identifiers = [task.trader?.id, task.trader?.name, task.trader?.normalizedName];
 
   return identifiers.some(
     (value) => typeof value === 'string' && value.trim().toLowerCase() === LIGHTKEEPER_KEY
@@ -51,18 +47,16 @@ export function taskMatchesRequirementFilters(
     return false;
   }
 
-  const hasAnyRequirement =
-    hasKappaRequirement || lightkeeperTask || hasEodRequirement;
+  const hasAnyRequirement = hasKappaRequirement || lightkeeperTask || hasEodRequirement;
 
   if (!hasAnyRequirement) {
     return true;
   }
 
-  const matchesVisibleRequirement = (
+  const matchesVisibleRequirement =
     (hasKappaRequirement && showKappa) ||
     (lightkeeperTask && showLightkeeper) ||
-    (hasEodRequirement && showEod)
-  );
+    (hasEodRequirement && showEod);
 
   return matchesVisibleRequirement;
 }

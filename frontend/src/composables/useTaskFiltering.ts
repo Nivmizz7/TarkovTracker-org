@@ -146,8 +146,7 @@ export function useTaskFiltering() {
     }
     // Filter by faction
     return filtered.filter(
-      (task) =>
-        task.factionName === 'Any' || task.factionName === playerFaction.value?.[userView]
+      (task) => task.factionName === 'Any' || task.factionName === playerFaction.value?.[userView]
     );
   };
 

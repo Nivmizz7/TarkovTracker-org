@@ -4,21 +4,30 @@
       <v-card class="consent-banner__card" elevation="12" variant="flat">
         <v-card-text class="consent-banner__content">
           <div class="consent-banner__text">
-            <h2 class="consent-banner__title">We value your privacy</h2>
+            <h2 class="consent-banner__title">{{ title }}</h2>
             <p class="consent-banner__body">
-              TarkovTracker uses analytics tools like Firebase Analytics and Microsoft Clarity to understand
-              feature usage and improve the service. You can learn more in our
-              <router-link to="/privacy" class="consent-banner__link">Privacy Policy</router-link>.
-              Choose whether to enable analytics tracking below. You can change your choice at any time from
-              the footer.
+              {{ beforeLink }}
+              <router-link to="/privacy" class="consent-banner__link">{{ privacyLabel }}</router-link
+              >.
+              {{ afterLink }}
             </p>
           </div>
           <div class="consent-banner__actions">
-            <v-btn color="secondary" variant="flat" class="consent-banner__primary" @click="handleAccept">
-              Accept
+            <v-btn
+              color="secondary"
+              variant="flat"
+              class="consent-banner__primary"
+              @click="handleAccept"
+            >
+              {{ acceptLabel }}
             </v-btn>
-            <v-btn variant="outlined" color="secondary" class="consent-banner__secondary" @click="handleReject">
-              Decline
+            <v-btn
+              variant="outlined"
+              color="secondary"
+              class="consent-banner__secondary"
+              @click="handleReject"
+            >
+              {{ declineLabel }}
             </v-btn>
           </div>
         </v-card-text>
@@ -26,16 +35,44 @@
     </div>
   </transition>
 </template>
-<script setup>
-  import { onMounted } from 'vue';
+<script setup lang="ts">
+  import { computed, onMounted } from 'vue';
+  import { useI18n } from 'vue-i18n';
   import { usePrivacyConsent } from '@/composables/usePrivacyConsent';
 
-  const {
-    bannerVisible,
-    accept,
-    reject,
-    initializeConsent,
-  } = usePrivacyConsent();
+  const { bannerVisible, accept, reject, initializeConsent } = usePrivacyConsent();
+  const { t, tm } = useI18n({ useScope: 'global' });
+
+  const buildBodyText = (baseKey: 'beforeLink' | 'afterLink') =>
+    computed(() => {
+      const body = (tm('consent.body') ?? {}) as Record<string, unknown>;
+      const parts: string[] = [];
+      let index = 1;
+
+      while (true) {
+        const partKey = `${baseKey}_part${index}`;
+        const value = body[partKey];
+        if (typeof value !== 'string') {
+          break;
+        }
+        parts.push(value);
+        index += 1;
+      }
+
+      if (parts.length > 0) {
+        return parts.join('');
+      }
+
+      const fallback = body[baseKey];
+      return typeof fallback === 'string' ? fallback : '';
+    });
+
+  const title = computed(() => t('consent.title'));
+  const beforeLink = buildBodyText('beforeLink');
+  const afterLink = buildBodyText('afterLink');
+  const privacyLabel = computed(() => t('consent.privacyLink'));
+  const acceptLabel = computed(() => t('consent.actions.accept'));
+  const declineLabel = computed(() => t('consent.actions.decline'));
 
   const handleAccept = () => {
     accept();
@@ -143,7 +180,9 @@
 
   .consent-fade-enter-active,
   .consent-fade-leave-active {
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
   }
 
   .consent-fade-enter-from,

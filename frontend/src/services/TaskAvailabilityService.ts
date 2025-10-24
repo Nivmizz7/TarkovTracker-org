@@ -135,8 +135,9 @@ export class TaskAvailabilityService {
     const currentData = this.getCurrentData(teamId);
 
     return task.failedRequirements.every((requirement) => {
-      const failed =
-        currentData?.taskCompletions?.[requirement?.task?.id ?? '']?.failed ?? false;
+      const requirementTaskId = requirement?.task?.id ?? '';
+      const taskCompletion = currentData?.taskCompletions?.[requirementTaskId];
+      const failed = taskCompletion?.failed ?? false;
       return !failed;
     });
   }
@@ -170,10 +171,7 @@ export class TaskAvailabilityService {
       const traderId = requirement?.trader?.id;
       if (!traderId) return true;
 
-      const requiredLevel = Math.max(
-        0,
-        Math.min(10, Math.floor(Number(requirement.level) || 0))
-      );
+      const requiredLevel = this.clampTraderLevel(requirement.level);
       const currentLevel = teamTraderLevels[traderId] ?? 0;
       return currentLevel >= requiredLevel;
     });
@@ -190,10 +188,7 @@ export class TaskAvailabilityService {
       const traderId = requirement?.trader?.id;
       if (!traderId) return true;
 
-      const requiredLevel = Math.max(
-        0,
-        Math.min(10, Math.floor(Number(requirement.value) || 0))
-      );
+      const requiredLevel = this.clampTraderLevel(requirement.value);
       const currentLevel = teamTraderLevels[traderId] ?? 0;
       return currentLevel >= requiredLevel;
     });
@@ -223,6 +218,10 @@ export class TaskAvailabilityService {
     return current >= required;
   }
 
+  private clampTraderLevel(value: unknown): number {
+    return Math.max(0, Math.min(10, Math.floor(Number(value) || 0)));
+  }
+
   private validateObjectiveStanding(objective: TaskObjective, teamId: string): boolean {
     const traderId = objective?.trader?.id;
     if (!traderId) return true;
@@ -231,11 +230,7 @@ export class TaskAvailabilityService {
     return standingComparator(current, objective?.compareMethod, required);
   }
 
-  private checkTaskRequirements(
-    task: Task,
-    teamId: string,
-    stack: Set<string>
-  ): boolean {
+  private checkTaskRequirements(task: Task, teamId: string, stack: Set<string>): boolean {
     if (!task.taskRequirements?.length) return true;
 
     return task.taskRequirements.every((requirement) =>

@@ -13,13 +13,14 @@
 
       <v-card-text class="pa-0">
         <v-progress-linear v-if="loading" indeterminate color="primary" />
-        
+
         <v-alert
           v-if="error"
           type="error"
           variant="tonal"
           class="ma-4"
           closable
+          @click:close="handleAlertClose"
         >
           {{ error }}
         </v-alert>
@@ -31,213 +32,91 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
-import { useTheme } from 'vuetify';
-import SwaggerUIConstructor from 'swagger-ui';
-import 'swagger-ui/dist/swagger-ui.css';
+  import { onBeforeUnmount, onMounted, ref } from 'vue';
+  import SwaggerUIConstructor from 'swagger-ui';
+  import 'swagger-ui/dist/swagger-ui.css';
+  import '@/assets/styles/swagger-ui-theme.css';
 
-const swaggerContainer = ref<HTMLElement | null>(null);
-const theme = useTheme();
-const loading = ref(true);
-const error = ref<string | null>(null);
+  const swaggerContainer = ref<HTMLElement | null>(null);
+  const loading = ref(true);
+  const error = ref<string | null>(null);
+  type SwaggerUIInstance = ReturnType<typeof SwaggerUIConstructor> & { destroy?: () => void };
+  const swaggerInstance = ref<SwaggerUIInstance | null>(null);
+  const fetchAbortController = ref<AbortController | null>(null);
+  const fetchTimeoutId = ref<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const FETCH_TIMEOUT_MS = 15000;
 
-onMounted(async () => {
-  try {
-    loading.value = true;
-    
-    // Fetch OpenAPI spec
-    const response = await fetch('/api/openapi.json');
-    
-    if (!response.ok) {
-      throw new Error(`Failed to load API specification: ${response.statusText}`);
+  const handleAlertClose = () => {
+    error.value = null;
+  };
+
+  onMounted(async () => {
+    try {
+      loading.value = true;
+      const abortController = new AbortController();
+      fetchAbortController.value = abortController;
+      fetchTimeoutId.value = setTimeout(() => {
+        abortController.abort();
+      }, FETCH_TIMEOUT_MS);
+
+      // Fetch OpenAPI spec
+      const response = await fetch('/api/openapi.json', {
+        signal: abortController.signal,
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to load API specification: ${response.statusText}`);
+      }
+
+      const spec = await response.json();
+      const container = swaggerContainer.value;
+
+      if (!container) {
+        throw new Error('Swagger UI container is unavailable');
+      }
+
+      // Initialize Swagger UI
+      swaggerInstance.value = SwaggerUIConstructor({
+        spec,
+        domNode: container,
+        deepLinking: true,
+        defaultModelsExpandDepth: 1,
+        defaultModelExpandDepth: 1,
+        docExpansion: 'list',
+        filter: true,
+        tryItOutEnabled: true,
+        persistAuthorization: true,
+      });
+
+      loading.value = false;
+    } catch (err) {
+      if (err instanceof DOMException && err.name === 'AbortError') {
+        loading.value = false;
+        console.warn('API docs request aborted');
+        return;
+      }
+      error.value = err instanceof Error ? err.message : 'Failed to load API documentation';
+      loading.value = false;
+      console.error('Error loading API docs:', err);
+    } finally {
+      if (fetchTimeoutId.value) {
+        clearTimeout(fetchTimeoutId.value);
+        fetchTimeoutId.value = undefined;
+      }
+      fetchAbortController.value = null;
     }
-    
-    const spec = await response.json();
+  });
 
-    // Initialize Swagger UI
-    SwaggerUIConstructor({
-      spec,
-      domNode: document.getElementById('swagger-ui'),
-      deepLinking: true,
-      presets: [
-        SwaggerUIConstructor.presets.apis,
-      ],
-      layout: 'BaseLayout',
-      defaultModelsExpandDepth: 1,
-      defaultModelExpandDepth: 1,
-      docExpansion: 'list',
-      filter: true,
-      tryItOutEnabled: true,
-      persistAuthorization: true,
-    });
-
-    loading.value = false;
-  } catch (err) {
-    error.value = err instanceof Error ? err.message : 'Failed to load API documentation';
-    loading.value = false;
-    console.error('Error loading API docs:', err);
-  }
-});
+  onBeforeUnmount(() => {
+    fetchAbortController.value?.abort();
+    fetchAbortController.value = null;
+    if (fetchTimeoutId.value) {
+      clearTimeout(fetchTimeoutId.value);
+      fetchTimeoutId.value = undefined;
+    }
+    if (swaggerInstance.value && typeof swaggerInstance.value.destroy === 'function') {
+      swaggerInstance.value.destroy();
+    }
+    swaggerInstance.value = null;
+  });
 </script>
-
-<style>
-/* Global Swagger UI theming to match Vuetify */
-#swagger-ui {
-  font-family: Roboto, sans-serif;
-}
-
-#swagger-ui .swagger-ui {
-  font-family: Roboto, sans-serif;
-}
-
-/* Opblock styling */
-#swagger-ui .opblock {
-  border-radius: 4px;
-  margin: 0 0 15px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-#swagger-ui .opblock .opblock-summary {
-  border-radius: 4px;
-}
-
-/* Button styling */
-#swagger-ui .btn {
-  font-family: Roboto, sans-serif;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.0892857143em;
-  border-radius: 4px;
-  padding: 8px 16px;
-}
-
-/* Execute button */
-#swagger-ui .btn.execute {
-  background-color: rgb(var(--v-theme-primary));
-  border-color: rgb(var(--v-theme-primary));
-}
-
-#swagger-ui .btn.execute:hover {
-  background-color: rgb(var(--v-theme-primary));
-  filter: brightness(0.9);
-}
-
-/* Authorization button */
-#swagger-ui .btn.authorize {
-  border-color: rgb(var(--v-theme-primary));
-  color: rgb(var(--v-theme-primary));
-}
-
-/* Input fields */
-#swagger-ui input[type=text],
-#swagger-ui input[type=password],
-#swagger-ui textarea,
-#swagger-ui select {
-  border-radius: 4px;
-  border: 1px solid rgba(var(--v-border-color), var(--v-border-opacity));
-  font-family: Roboto, sans-serif;
-}
-
-#swagger-ui input[type=text]:focus,
-#swagger-ui input[type=password]:focus,
-#swagger-ui textarea:focus {
-  border-color: rgb(var(--v-theme-primary));
-  outline: none;
-}
-
-/* HTTP method badges */
-#swagger-ui .opblock.opblock-get {
-  border-color: #4caf50;
-  background: rgba(76, 175, 80, 0.1);
-}
-
-#swagger-ui .opblock.opblock-post {
-  border-color: #2196f3;
-  background: rgba(33, 150, 243, 0.1);
-}
-
-#swagger-ui .opblock.opblock-put {
-  border-color: #ff9800;
-  background: rgba(255, 152, 0, 0.1);
-}
-
-#swagger-ui .opblock.opblock-delete {
-  border-color: #f44336;
-  background: rgba(244, 67, 54, 0.1);
-}
-
-#swagger-ui .opblock.opblock-patch {
-  border-color: #9c27b0;
-  background: rgba(156, 39, 176, 0.1);
-}
-
-/* Response section */
-#swagger-ui .responses-inner {
-  padding: 20px;
-  border-radius: 4px;
-}
-
-/* Models section */
-#swagger-ui .model-box {
-  border-radius: 4px;
-  background: rgba(var(--v-theme-surface), 1);
-}
-
-/* Info section */
-#swagger-ui .info {
-  margin: 20px 0;
-}
-
-#swagger-ui .info .title {
-  font-size: 2rem;
-  font-weight: 500;
-  margin-bottom: 16px;
-}
-
-/* Scheme container */
-#swagger-ui .scheme-container {
-  background: rgba(var(--v-theme-surface-variant), 1);
-  padding: 16px;
-  border-radius: 4px;
-  margin: 16px 0;
-}
-
-/* Parameter table */
-#swagger-ui .parameters-col_description {
-  font-family: Roboto, sans-serif;
-}
-
-#swagger-ui table thead tr th {
-  font-weight: 500;
-  text-transform: uppercase;
-  font-size: 0.875rem;
-  letter-spacing: 0.0892857143em;
-}
-
-/* Response code badges */
-#swagger-ui .response-col_status {
-  font-weight: 500;
-}
-
-/* Topbar - hide default Swagger UI top bar */
-#swagger-ui .topbar {
-  display: none;
-}
-
-/* Dark mode adjustments */
-.v-theme--dark #swagger-ui .opblock {
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.v-theme--dark #swagger-ui input[type=text],
-.v-theme--dark #swagger-ui input[type=password],
-.v-theme--dark #swagger-ui textarea,
-.v-theme--dark #swagger-ui select {
-  background: rgba(255, 255, 255, 0.05);
-  color: rgba(255, 255, 255, 0.87);
-}
-
-.v-theme--dark #swagger-ui .response-col_description__inner div.markdown p {
-  color: rgba(255, 255, 255, 0.87);
-}
-</style>

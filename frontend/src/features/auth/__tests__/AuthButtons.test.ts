@@ -1,7 +1,7 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, beforeAll } from 'vitest';
 import { mount } from '@vue/test-utils';
-import { createI18n } from 'vue-i18n';
 import AuthButtons from '../AuthButtons.vue';
+import { testI18n } from '@/test/testI18n';
 
 // Mock Firebase
 const firebaseMock = vi.hoisted(() => ({
@@ -31,30 +31,26 @@ vi.mock('@/utils/DataMigrationService', () => ({
 }));
 
 describe('AuthButtons', () => {
+  beforeAll(() => {
+    testI18n.global.mergeLocaleMessage('en', {
+      auth: {
+        consent: {
+          full: 'By continuing you agree to the TarkovTracker {terms} and {privacy}.',
+          terms: 'Terms of Service',
+          privacy: 'Privacy Policy',
+        },
+      },
+    });
+  });
+
   beforeEach(() => {
     vi.clearAllMocks();
     firebaseMock.signInWithPopup.mockResolvedValue({ user: { uid: 'uid-123' } });
   });
 
   const mountWithStubs = () => {
-    const i18n = createI18n({
-      locale: 'en',
-      messages: {
-        en: {
-          auth: {
-            consent: {
-              full: 'By continuing you agree to the TarkovTracker {terms} and {privacy}.',
-              terms: 'Terms of Service',
-              privacy: 'Privacy Policy',
-            },
-          },
-        },
-      },
-    });
-
     return mount(AuthButtons, {
       global: {
-        plugins: [i18n],
         stubs: {
           'router-link': {
             name: 'RouterLinkStub',

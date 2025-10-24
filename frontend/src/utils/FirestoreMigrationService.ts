@@ -64,9 +64,12 @@ export const migrateLocalDataToUser = async (
     let existingData: ProgressData | null = null;
     try {
       const existingDoc = await getDoc(progressRef);
-      existingData = existingDoc.exists() ? ((existingDoc.data() as ProgressData) || null) : null;
+      existingData = existingDoc.exists() ? (existingDoc.data() as ProgressData) || null : null;
     } catch (error) {
-      logger.warn('[FirestoreMigrationService] Error checking existing user data proceeding', error);
+      logger.warn(
+        '[FirestoreMigrationService] Error checking existing user data; proceeding with migration',
+        error
+      );
     }
 
     if (shouldAbortMigration(existingData)) {
@@ -165,7 +168,10 @@ export const importDataToUser = async (
         existingData = migrateToGameModeStructure(rawData);
       }
     } catch (error) {
-      logger.warn('[FirestoreMigrationService] Could not get existing data, using defaults:', error);
+      logger.warn(
+        '[FirestoreMigrationService] Could not get existing data, using defaults:',
+        error
+      );
     }
 
     const newUserState = buildImportedUserState(importedData, existingData);

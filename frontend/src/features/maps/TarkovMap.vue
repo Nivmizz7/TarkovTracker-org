@@ -138,14 +138,11 @@
     selectedFloor.value = floor;
   });
 
-  watch(
-    selectedFloor,
-    () => {
-      if (props.map.name?.toLowerCase() === 'factory' && isFactoryLoaded.value) {
-        updateFactoryFloorVisibility();
-      }
+  watch(selectedFloor, () => {
+    if (props.map.name?.toLowerCase() === 'factory' && isFactoryLoaded.value) {
+      updateFactoryFloorVisibility();
     }
-  );
+  });
 
   watch(
     () => props.map,
@@ -231,9 +228,7 @@
           floorGroup.id = floor;
 
           // Copy all children from the loaded SVG to our group
-          const svgChildren = Array.from(
-            floorSvg.documentElement.children
-          ) as Element[];
+          const svgChildren = Array.from(floorSvg.documentElement.children);
           svgChildren.forEach((child: Element) => {
             floorGroup.appendChild(child.cloneNode(true));
           });

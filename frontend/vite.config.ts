@@ -29,6 +29,11 @@ const includesAny = (value: string, substrings: string[]) => {
 };
 
 const vendorChunkMatchers = [
+  // Ensure Vue core/reactivity land in a vendor chunk to avoid TDZ issues in prod
+  {
+    name: 'vue',
+    match: (id: string) => includesAny(id, ['node_modules/vue/', 'node_modules/@vue/']),
+  },
   { name: 'vuetify', match: (id: string) => id.includes('vuetify') },
   { name: 'apollo-graphql', match: (id: string) => includesAny(id, ['@apollo', 'graphql']) },
   { name: 'firebase', match: (id: string) => id.includes('firebase') },

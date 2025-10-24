@@ -122,15 +122,13 @@
   const resolveTaskId = (value) => (typeof value === 'string' ? value : value?.id);
   const lockedBehind = computed(() => {
     const successors = props.task.successors ?? [];
-    return successors
-      .map(resolveTaskId)
-      .filter((id) => id && !tarkovStore.isTaskComplete(id)).length;
+    return successors.map(resolveTaskId).filter((id) => id && !tarkovStore.isTaskComplete(id))
+      .length;
   });
   const lockedBefore = computed(() => {
     const predecessors = props.task.predecessors ?? [];
-    return predecessors
-      .map(resolveTaskId)
-      .filter((id) => id && !tarkovStore.isTaskComplete(id)).length;
+    return predecessors.map(resolveTaskId).filter((id) => id && !tarkovStore.isTaskComplete(id))
+      .length;
   });
   const showOptionalRequirementLabels = computed(
     () => userStore.getShowOptionalTaskRequirementLabels
