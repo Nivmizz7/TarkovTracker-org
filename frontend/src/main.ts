@@ -8,6 +8,7 @@ import pinia from './plugins/pinia';
 import apolloClient from './plugins/apollo';
 import { VueFire } from 'vuefire';
 import { app as fireapp } from './plugins/firebase';
+import { initDevAuth } from './plugins/dev-auth';
 import { markInitialized } from './plugins/store-initializer';
 import { markI18nReady } from '@/composables/utils/i18nHelpers';
 import { usePrivacyConsent } from '@/composables/usePrivacyConsent';
@@ -24,6 +25,9 @@ declare global {
 
 // Add a global flag to track data migration status - will help with persistence
 window.__TARKOV_DATA_MIGRATED = false;
+
+// Initialize dev auth if enabled (must be called before Firebase auth initialization)
+initDevAuth();
 
 // Create app instance
 const app = createApp(App);

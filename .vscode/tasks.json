@@ -1,0 +1,79 @@
+{
+  "version": "2.0.0",
+  "problemMatchers": [
+    {
+      "name": "typescript-problem-matcher",
+      "owner": "custom",
+      "pattern": {
+        "regexp": "^([^\\s].*)\\((\\d+|\\d+,\\d+|\\d+,\\d+,\\d+,\\d+)\\):\\s+(error|warning|info)\\s+(TS\\d+)\\s*:\\s*(.*)$",
+        "file": 1,
+        "location": 2,
+        "severity": 3,
+        "code": 4,
+        "message": 5
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "dev",
+      "label": "npm: dev",
+      "detail": "Start Vite dev server (frontend only)",
+      "isBackground": true,
+      "problemMatcher": {
+        "base": "$typescript-problem-matcher",
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".*",
+          "endsPattern": "(Local:|Network:).*http://localhost:3000"
+        }
+      }
+    },
+    {
+      "type": "npm",
+      "script": "dev:full",
+      "label": "npm: dev:full",
+      "detail": "Start Vite + Firebase emulators",
+      "isBackground": true,
+      "problemMatcher": {
+        "base": "$typescript-problem-matcher",
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".*",
+          "endsPattern": "(All emulators ready|Local:|Network:)"
+        }
+      }
+    },
+    {
+      "type": "npm",
+      "script": "dev:firebase",
+      "label": "npm: dev:firebase",
+      "detail": "Build and serve production build with Firebase emulators",
+      "isBackground": true,
+      "problemMatcher": {
+        "base": "$typescript-problem-matcher",
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".*",
+          "endsPattern": "All emulators ready"
+        }
+      }
+    },
+    {
+      "type": "npm",
+      "script": "emulators:backend",
+      "label": "npm: emulators:backend",
+      "detail": "Start Firebase emulators (auth, firestore, functions)",
+      "isBackground": true,
+      "problemMatcher": {
+        "base": "$typescript-problem-matcher",
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".*",
+          "endsPattern": "All emulators ready"
+        }
+      }
+    }
+  ]
+}
