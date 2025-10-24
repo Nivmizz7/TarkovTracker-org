@@ -107,7 +107,10 @@ describe('abuseGuard middleware', () => {
     const next = vi.fn();
     const config = internals?.inspectConfig();
     expect(config).toBeDefined();
-    const warnThreshold = Math.max(1, Math.floor((config?.THRESHOLD ?? 1) * (config?.WARN_RATIO ?? 1)));
+    const warnThreshold = Math.max(
+      1,
+      Math.floor((config?.THRESHOLD ?? 1) * (config?.WARN_RATIO ?? 1))
+    );
 
     for (let i = 0; i < warnThreshold; i++) {
       const req = createRequest();

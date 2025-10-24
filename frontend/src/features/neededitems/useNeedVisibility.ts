@@ -77,7 +77,10 @@ export function useNeedVisibility() {
         !selfTaskComplete && !selfObjectiveComplete && matchesFactionForTeam(taskFaction, 'self')
       );
     }
-    const taskNeedsAttention = hasTeamNeedingEntry(tasksCompletions.value?.[need.taskId], taskFaction);
+    const taskNeedsAttention = hasTeamNeedingEntry(
+      tasksCompletions.value?.[need.taskId],
+      taskFaction
+    );
     const objectiveNeedsAttention = hasTeamNeedingEntry(
       objectiveCompletions.value?.[need.id],
       taskFaction
@@ -109,8 +112,12 @@ export function useNeedVisibility() {
       return selfModuleIncomplete || selfPartIncomplete;
     }
     // For team view: Show item if ANY team member needs the module OR part
-    const moduleNeeded = Object.values(moduleCompletionsForModule).some((status) => status === false);
-    const partNeeded = Object.values(modulePartCompletionsForModule).some((status) => status === false);
+    const moduleNeeded = Object.values(moduleCompletionsForModule).some(
+      (status) => status === false
+    );
+    const partNeeded = Object.values(modulePartCompletionsForModule).some(
+      (status) => status === false
+    );
     return moduleNeeded || partNeeded;
   };
   return {

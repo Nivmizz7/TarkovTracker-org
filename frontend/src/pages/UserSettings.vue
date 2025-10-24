@@ -56,7 +56,12 @@
 
     <v-row class="justify-center">
       <v-col cols="12" md="10" lg="8">
-        <fitted-card icon="mdi-restore" icon-color="white" highlight-color="warning" :fill-height="false">
+        <fitted-card
+          icon="mdi-restore"
+          icon-color="white"
+          highlight-color="warning"
+          :fill-height="false"
+        >
           <template #title>
             {{ $t('page.settings.cards.progress.title') }}
           </template>
@@ -64,13 +69,7 @@
             <p class="text-body-2 mb-4">
               {{ $t('page.settings.cards.progress.description') }}
             </p>
-            <v-alert
-              v-if="!fireuser.loggedIn"
-              type="warning"
-              variant="tonal"
-              class="mb-4"
-              dense
-            >
+            <v-alert v-if="!fireuser.loggedIn" type="warning" variant="tonal" class="mb-4" dense>
               {{ $t('page.settings.cards.progress.login_required') }}
             </v-alert>
             <v-row dense>
@@ -104,7 +103,12 @@
 
     <v-row class="justify-center mb-6">
       <v-col cols="12" md="10" lg="8">
-        <fitted-card icon="mdi-account-remove" icon-color="white" highlight-color="error" :fill-height="false">
+        <fitted-card
+          icon="mdi-account-remove"
+          icon-color="white"
+          highlight-color="error"
+          :fill-height="false"
+        >
           <template #title>
             {{ $t('page.settings.cards.account_reset.title') }}
           </template>
@@ -146,12 +150,7 @@
           <v-btn variant="text" @click="closeResetDialog">
             {{ $t('common.cancel') }}
           </v-btn>
-          <v-btn
-            color="warning"
-            :loading="resetting"
-            :disabled="resetting"
-            @click="confirmReset"
-          >
+          <v-btn color="warning" :loading="resetting" :disabled="resetting" @click="confirmReset">
             {{ $t('page.settings.dialogs.reset_mode.confirm', { mode: resetModeLabel }) }}
           </v-btn>
         </v-card-actions>

@@ -58,7 +58,7 @@ export function getCanonicalMapName(mapName: string): string {
 
   // Find matching variant config
   for (const config of MAP_VARIANT_CONFIG) {
-    if (config.variants.some(v => v.toLowerCase() === mapName.toLowerCase())) {
+    if (config.variants.some((v) => v.toLowerCase() === mapName.toLowerCase())) {
       normalizedMapCache.set(mapName, config.canonical);
       return config.canonical;
     }
@@ -118,7 +118,7 @@ export function isMapVariant(mapName: string): boolean {
   if (!mapName) return false;
 
   for (const config of MAP_VARIANT_CONFIG) {
-    if (config.variants.some(v => v.toLowerCase() === mapName.toLowerCase())) {
+    if (config.variants.some((v) => v.toLowerCase() === mapName.toLowerCase())) {
       return true;
     }
   }
@@ -151,18 +151,21 @@ export function isMapIdVariant(mapId: string): boolean {
  * @param allMaps - All available maps
  * @returns Array of all map IDs that belong to this map group
  */
-export function getMapIdGroup(mapId: string, allMaps: Array<{ id: string; name: string }>): string[] {
+export function getMapIdGroup(
+  mapId: string,
+  allMaps: Array<{ id: string; name: string }>
+): string[] {
   if (!mapId || !allMaps?.length) return [mapId];
 
-  const map = allMaps.find(m => m.id === mapId);
+  const map = allMaps.find((m) => m.id === mapId);
   if (!map) return [mapId];
 
   const canonicalName = getCanonicalMapName(map.name);
 
   // Find all maps with the same canonical name
   const groupIds = allMaps
-    .filter(m => getCanonicalMapName(m.name) === canonicalName)
-    .map(m => m.id);
+    .filter((m) => getCanonicalMapName(m.name) === canonicalName)
+    .map((m) => m.id);
 
   return groupIds.length > 0 ? groupIds : [mapId];
 }

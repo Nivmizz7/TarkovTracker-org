@@ -18,15 +18,7 @@
       </v-card>
     </template>
     <v-row no-gutters>
-      <v-col
-        v-for="token in userTokens"
-        :key="token"
-        cols="12"
-        sm="12"
-        md="6"
-        lg="6"
-        xl="6"
-      >
+      <v-col v-for="token in userTokens" :key="token" cols="12" sm="12" md="6" lg="6" xl="6">
         <TokenCard :token="token" class="ma-2" />
       </v-col>
     </v-row>
@@ -66,12 +58,9 @@
           <div class="text-caption text-medium-emphasis mb-3">
             {{ $t('page.api.tokens.form.gamemode_description') }}
           </div>
-          
+
           <v-radio-group v-model="selectedGameMode" density="compact" class="mb-4" column>
-            <v-radio
-              value="pvp"
-              color="white"
-            >
+            <v-radio value="pvp" color="white">
               <template #label>
                 <div>
                   <div class="font-weight-medium d-flex align-center">
@@ -84,10 +73,7 @@
                 </div>
               </template>
             </v-radio>
-            <v-radio
-              value="pve"
-              color="white"
-            >
+            <v-radio value="pve" color="white">
               <template #label>
                 <div>
                   <div class="font-weight-medium d-flex align-center">
@@ -100,10 +86,7 @@
                 </div>
               </template>
             </v-radio>
-            <v-radio
-              value="dual"
-              color="white"
-            >
+            <v-radio value="dual" color="white">
               <template #label>
                 <div>
                   <div class="font-weight-medium d-flex align-center">

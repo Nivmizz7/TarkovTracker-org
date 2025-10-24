@@ -29,8 +29,7 @@ export function createHideoutProgressGetters(stores: ComputedRef<TeamStoresMap>)
       for (const teamId of Object.keys(stores.value)) {
         const store = stores.value[teamId];
         const { currentData } = getCurrentGameModeData<UserProgressData | undefined>(store);
-        completions[moduleId][teamId] =
-          currentData?.hideoutModules?.[moduleId]?.complete ?? false;
+        completions[moduleId][teamId] = currentData?.hideoutModules?.[moduleId]?.complete ?? false;
       }
     }
     return completions;
@@ -77,10 +76,7 @@ function buildHideoutLevelMap(stations: HideoutStation[], teamStores: TeamStores
   }, {});
 }
 
-function calculateStationLevel(
-  station: HideoutStation,
-  store: Store<string, UserState>
-) {
+function calculateStationLevel(station: HideoutStation, store: Store<string, UserState>) {
   const { currentData } = getCurrentGameModeData<UserProgressData | undefined>(store);
   const modulesState = currentData?.hideoutModules ?? {};
   const manualLevel = computeMaxManualLevel(station, modulesState);

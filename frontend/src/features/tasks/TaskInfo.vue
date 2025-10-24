@@ -21,10 +21,7 @@
           {{ t('page.tasks.questcard.level_tooltip') }}
         </v-tooltip>
 
-        <v-tooltip
-          v-if="task?.predecessors?.length"
-          location="top"
-        >
+        <v-tooltip v-if="task?.predecessors?.length" location="top">
           <template #activator="activator">
             <span class="tooltip-activator" v-bind="activator.props" tabindex="0">
               <InfoRow icon="mdi-lock-open-outline" class="mb-1 lock-indicator">
@@ -36,10 +33,7 @@
           {{ t('page.tasks.questcard.lockedbefore_tooltip') }}
         </v-tooltip>
 
-        <v-tooltip
-          v-if="task?.successors?.length"
-          location="top"
-        >
+        <v-tooltip v-if="task?.successors?.length" location="top">
           <template #activator="activator">
             <span class="tooltip-activator" v-bind="activator.props" tabindex="0">
               <InfoRow icon="mdi-lock" class="mb-1 lock-indicator">
@@ -109,14 +103,13 @@
         >
           <span class="next-tasks__label">{{ t('page.tasks.questcard.next_tasks') }}:</span>
           <span class="next-tasks__list">
-            <span v-for="(nextTask, index) in nextTasks" :key="nextTask.id || index" class="next-task">
+            <span
+              v-for="(nextTask, index) in nextTasks"
+              :key="nextTask.id || index"
+              class="next-task"
+            >
               <template v-if="nextTask?.wikiLink">
-                <a
-                  :href="nextTask.wikiLink"
-                  target="_blank"
-                  rel="noopener"
-                  class="next-task__link"
-                >
+                <a :href="nextTask.wikiLink" target="_blank" rel="noopener" class="next-task__link">
                   {{ nextTask?.name || nextTask?.id || t('page.tasks.questcard.unknown_task') }}
                 </a>
               </template>
@@ -143,12 +136,7 @@
               class="next-task"
             >
               <template v-if="prevTask?.wikiLink">
-                <a
-                  :href="prevTask.wikiLink"
-                  target="_blank"
-                  rel="noopener"
-                  class="next-task__link"
-                >
+                <a :href="prevTask.wikiLink" target="_blank" rel="noopener" class="next-task__link">
                   {{ prevTask?.name || prevTask?.id || t('page.tasks.questcard.unknown_task') }}
                 </a>
               </template>
@@ -175,8 +163,6 @@
         <InfoRow v-if="showTaskIds" icon="mdi-identifier" class="mb-1 task-id-row">
           {{ task.id }}
         </InfoRow>
-
-        
       </v-container>
     </template>
     <template v-else>

@@ -17,17 +17,15 @@
   auth: {
     consent: {
       full: 'En continuant, vous acceptez les {terms} et la {privacy} de TarkovTracker.',
-      terms: 'Conditions d\'utilisation',
+      terms: "Conditions d'utilisation",
       privacy: 'Politique de confidentialité',
     },
   },
   consent: {
     title: 'Nous respectons votre vie privée',
     body: {
-      beforeLink:
-        'TarkovTracker utilise des outils d’analyse comme Firebase Analytics et Microsoft Clarity pour comprendre l’utilisation des fonctionnalités et améliorer le service. Vous pouvez en savoir plus dans notre ',
-      afterLink:
-        'Choisissez ci-dessous si vous souhaitez activer le suivi analytique. Vous pouvez modifier votre choix à tout moment depuis le pied de page.',
+      beforeLink: 'TarkovTracker utilise des outils d’analyse comme Firebase Analytics et Microsoft Clarity pour comprendre l’utilisation des fonctionnalités et améliorer le service. Vous pouvez en savoir plus dans notre ',
+      afterLink: 'Choisissez ci-dessous si vous souhaitez activer le suivi analytique. Vous pouvez modifier votre choix à tout moment depuis le pied de page.',
     },
     privacyLink: 'Politique de confidentialité',
     actions: {

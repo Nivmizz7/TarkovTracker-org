@@ -64,7 +64,7 @@ describe('Token Creation - gameMode Validation', () => {
 
       for (const gameMode of invalidGameModes) {
         expect(() => validateGameMode(gameMode)).toThrow(HttpsError);
-        
+
         try {
           validateGameMode(gameMode);
         } catch (error) {
@@ -106,7 +106,7 @@ describe('Token Creation - gameMode Validation', () => {
       };
 
       expect(() => validateTokenRequest(invalidRequest)).toThrow(HttpsError);
-      
+
       try {
         validateTokenRequest(invalidRequest);
       } catch (error) {
@@ -124,7 +124,7 @@ describe('Token Creation - gameMode Validation', () => {
       };
 
       expect(() => validateTokenRequest(invalidRequest)).toThrow(HttpsError);
-      
+
       try {
         validateTokenRequest(invalidRequest);
       } catch (error) {
@@ -145,7 +145,7 @@ describe('Token Creation - gameMode Validation', () => {
       };
 
       expect(() => validateTokenRequest(invalidRequest)).toThrow(HttpsError);
-      
+
       try {
         validateTokenRequest(invalidRequest);
       } catch (error) {

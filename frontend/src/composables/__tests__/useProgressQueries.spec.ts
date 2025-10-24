@@ -2,7 +2,10 @@ import { describe, it, expect, beforeAll } from 'vitest';
 import { createPinia, setActivePinia, defineStore } from 'pinia';
 import { ref } from 'vue';
 
-type TeamStores = Record<string, { getObjectiveCount: () => number; getHideoutPartCount: () => number }>;
+type TeamStores = Record<
+  string,
+  { getObjectiveCount: () => number; getHideoutPartCount: () => number }
+>;
 
 type CompletionMap = Record<string, Record<string, boolean>>;
 

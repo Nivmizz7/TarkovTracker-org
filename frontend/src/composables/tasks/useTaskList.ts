@@ -1,12 +1,4 @@
-import {
-  computed,
-  onBeforeUnmount,
-  onMounted,
-  ref,
-  shallowRef,
-  watch,
-  watchEffect,
-} from 'vue';
+import { computed, onBeforeUnmount, onMounted, ref, shallowRef, watch, watchEffect } from 'vue';
 import type { Ref, ShallowRef } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useUserStore } from '@/stores/user';
@@ -223,9 +215,12 @@ export function useTaskList() {
     completed: 0,
   });
 
-  const { renderedTasks, hasMoreTasks, loadMore, reset: resetVirtualTasks } = useVirtualTaskList(
-    visibleTasks as Ref<Task[]>
-  );
+  const {
+    renderedTasks,
+    hasMoreTasks,
+    loadMore,
+    reset: resetVirtualTasks,
+  } = useVirtualTaskList(visibleTasks as Ref<Task[]>);
 
   const visibleGPS = computed<ObjectiveWithUsers[]>(() => {
     if (activePrimaryView.value !== 'maps' || activeSecondaryView.value !== 'available') {
@@ -433,7 +428,9 @@ export function useTaskList() {
       if (usersWhoNeedTask.length === 0) {
         return acc;
       }
-      acc.push(includeNeededBy ? { ...task, neededBy: usersWhoNeedTask.map(getDisplayName) } : task);
+      acc.push(
+        includeNeededBy ? { ...task, neededBy: usersWhoNeedTask.map(getDisplayName) } : task
+      );
       return acc;
     }, []);
 

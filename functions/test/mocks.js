@@ -163,11 +163,17 @@ export const createFirebaseFunctionsMock = () => {
         this.code = code;
       }
     },
-    onCall: vi.fn((optionsOrHandler, maybeHandler) => wrapHttpsHandler(optionsOrHandler, maybeHandler)),
-    onRequest: vi.fn((optionsOrHandler, maybeHandler) => wrapHttpsHandler(optionsOrHandler, maybeHandler)),
+    onCall: vi.fn((optionsOrHandler, maybeHandler) =>
+      wrapHttpsHandler(optionsOrHandler, maybeHandler)
+    ),
+    onRequest: vi.fn((optionsOrHandler, maybeHandler) =>
+      wrapHttpsHandler(optionsOrHandler, maybeHandler)
+    ),
   };
 
-  const scheduleMock = vi.fn((optionsOrHandler, maybeHandler) => wrapHttpsHandler(optionsOrHandler, maybeHandler));
+  const scheduleMock = vi.fn((optionsOrHandler, maybeHandler) =>
+    wrapHttpsHandler(optionsOrHandler, maybeHandler)
+  );
 
   return {
     config: vi.fn().mockReturnValue({}),

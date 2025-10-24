@@ -7,13 +7,20 @@ import type { Task } from '@/types/tarkov';
 vi.mock('../useProgressQueries', () => ({
   useProgressQueries: vi.fn(() => ({
     visibleTeamIds: ref(['player1', 'player2']),
-    isTaskUnlockedFor: vi.fn((taskId: string, teamId: string) => taskId === 'task1' && teamId === 'player1'),
+    isTaskUnlockedFor: vi.fn(
+      (taskId: string, teamId: string) => taskId === 'task1' && teamId === 'player1'
+    ),
     isTaskUnlockedByAny: vi.fn((taskId: string) => taskId === 'task1'),
-    isTaskCompletedFor: vi.fn((taskId: string, teamId: string) => taskId === 'completed1' && teamId === 'player1'),
+    isTaskCompletedFor: vi.fn(
+      (taskId: string, teamId: string) => taskId === 'completed1' && teamId === 'player1'
+    ),
     getDisplayName: vi.fn((teamId: string) => `User ${teamId}`),
     playerFaction: ref({ player1: 'USEC', player2: 'BEAR' }),
     getUnlockedMap: vi.fn((taskId: string) => ({ player1: taskId === 'task1', player2: false })),
-    getTaskCompletionMap: vi.fn((taskId: string) => ({ player1: taskId === 'completed1', player2: false })),
+    getTaskCompletionMap: vi.fn((taskId: string) => ({
+      player1: taskId === 'completed1',
+      player2: false,
+    })),
     getObjectiveCompletionMap: vi.fn(() => ({ player1: false, player2: false })),
   })),
 }));
@@ -344,7 +351,7 @@ describe('useTaskFiltering', () => {
       // task2 should be excluded (BEAR only)
       expect(taskIds).not.toContain('task2');
       // At minimum, faction filtering should exclude BEAR tasks
-      expect(result.every(t => t.factionName !== 'BEAR')).toBe(true);
+      expect(result.every((t) => t.factionName !== 'BEAR')).toBe(true);
     });
   });
 

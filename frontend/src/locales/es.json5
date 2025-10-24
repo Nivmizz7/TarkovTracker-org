@@ -25,10 +25,13 @@
   consent: {
     title: 'Valoramos tu privacidad',
     body: {
-      beforeLink:
-        'TarkovTracker utiliza herramientas de analítica como Firebase Analytics y Microsoft Clarity para comprender el uso de las funciones y mejorar el servicio. Puedes obtener más información en nuestra ',
-      afterLink:
-        'Elige a continuación si deseas habilitar el seguimiento de analíticas. Puedes cambiar tu elección en cualquier momento desde el pie de página.',
+      beforeLink_part1:
+        'TarkovTracker utiliza herramientas de analítica como Firebase Analytics y Microsoft Clarity ',
+      beforeLink_part2: 'para comprender el uso de las funciones y mejorar el servicio. ',
+      beforeLink_part3: 'Puedes obtener más información en nuestra ',
+      afterLink_part1:
+        'Elige a continuación si deseas habilitar el seguimiento de analíticas. ',
+      afterLink_part2: 'Puedes cambiar tu elección en cualquier momento desde el pie de página.',
     },
     privacyLink: 'Política de Privacidad',
     actions: {

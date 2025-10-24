@@ -125,9 +125,8 @@
   const { t } = useI18n({ useScope: 'global' });
   const completedTaskCount = computed(() => {
     const completions = tasksCompletions.value || {};
-    return tasks.value.filter(
-      (task) => completions?.[task.id]?.[teamStoreId.value] === true
-    ).length;
+    return tasks.value.filter((task) => completions?.[task.id]?.[teamStoreId.value] === true)
+      .length;
   });
   const groupIcon = computed(() => {
     const level = getLevel(props.teammember);

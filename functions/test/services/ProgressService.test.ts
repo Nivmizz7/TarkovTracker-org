@@ -89,7 +89,9 @@ describe('ProgressService', () => {
       expect.objectContaining({ path: expect.stringContaining('progress/user-3') }),
       expect.objectContaining({ [`pvp.taskCompletions.task-alpha.complete`]: true })
     );
-    expect(updateTaskState).toHaveBeenCalledWith('task-alpha', 'completed', 'user-3', { tasks: [] });
+    expect(updateTaskState).toHaveBeenCalledWith('task-alpha', 'completed', 'user-3', {
+      tasks: [],
+    });
   });
 
   it('swallows dependency errors after updating a task', async () => {

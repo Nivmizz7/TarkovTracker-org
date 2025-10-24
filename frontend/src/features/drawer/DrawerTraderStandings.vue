@@ -28,12 +28,7 @@
         </template>
       </template>
       <div class="trader-settings pa-2">
-        <v-alert
-          type="info"
-          variant="tonal"
-          density="compact"
-          class="trader-mode-alert mb-3"
-        >
+        <v-alert type="info" variant="tonal" density="compact" class="trader-mode-alert mb-3">
           {{ t('drawer.trader_settings.mode_hint', { mode: currentGameModeLabel }) }}
         </v-alert>
         <v-card
@@ -50,7 +45,12 @@
             <div class="trader-card__title">
               <span class="trader-card__name">{{ card.trader.name }}</span>
               <span v-if="card.loyaltyEditable" class="trader-card__meta">
-                {{ t('drawer.trader_settings.level_range', { min: card.minLevel, max: card.maxLevel }) }}
+                {{
+                  t('drawer.trader_settings.level_range', {
+                    min: card.minLevel,
+                    max: card.maxLevel,
+                  })
+                }}
               </span>
               <span v-else class="trader-card__meta">
                 {{ t('drawer.trader_settings.fixed_level', { value: card.level }) }}
@@ -156,8 +156,7 @@
   const FENCE_LEVEL_MIN = 1;
   const FENCE_LEVEL_THRESHOLD = 6;
 
-  const clamp = (value: number, min: number, max: number) =>
-    Math.max(min, Math.min(max, value));
+  const clamp = (value: number, min: number, max: number) => Math.max(min, Math.min(max, value));
 
   interface TraderCard {
     trader: Trader;

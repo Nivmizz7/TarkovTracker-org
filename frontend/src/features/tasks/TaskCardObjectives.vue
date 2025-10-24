@@ -33,7 +33,7 @@
     objective?.maps?.some((map) => map.id === userStore.getTaskMapView) ?? false;
 
   const isMapObjectiveType = (objective: TaskObjective) =>
-    mapObjectiveTypes.includes((objective.type as typeof mapObjectiveTypes[number]) ?? '');
+    mapObjectiveTypes.includes((objective.type as (typeof mapObjectiveTypes)[number]) ?? '');
 
   const relevantObjectives = computed(() => {
     if (!onMapView.value) return props.task.objectives || [];

@@ -11,12 +11,21 @@
     >
       <div class="text-body-2">
         <div class="mb-1">
-          <strong>API has been reworked and should now function properly</strong> with full support for PvP and PvE game modes!
+          <strong>API has been reworked and should now function properly</strong> with full support
+          for PvP and PvE game modes!
         </div>
         <div>
           Please report any issues in our
-          <a href="https://discord.gg/zeAP4Ng" target="_blank" class="text-green-lighten-2">Discord</a> or on
-          <a href="https://github.com/tarkovtracker-org/TarkovTracker/issues" target="_blank" class="text-green-lighten-2">GitHub</a>.
+          <a href="https://discord.gg/zeAP4Ng" target="_blank" class="text-green-lighten-2"
+            >Discord</a
+          >
+          or on
+          <a
+            href="https://github.com/tarkovtracker-org/TarkovTracker/issues"
+            target="_blank"
+            class="text-green-lighten-2"
+            >GitHub</a
+          >.
         </div>
       </div>
     </v-alert>
@@ -268,11 +277,13 @@
       const objectiveItems = objective.items || (objective.item ? [objective.item] : []);
       if (
         objectiveItems.length > 0 &&
-        objectiveItems.some(item => [
-          '5696686a4bdc2da3298b456a',
-          '5449016a4bdc2d6f028b456f',
-          '569668774bdc2da2298b4568',
-        ].includes(item.id))
+        objectiveItems.some((item) =>
+          [
+            '5696686a4bdc2da3298b456a',
+            '5449016a4bdc2d6f028b456f',
+            '569668774bdc2da2298b4568',
+          ].includes(item.id)
+        )
       ) {
         return;
       }
@@ -320,11 +331,13 @@
       const objectiveItems = objective.items || (objective.item ? [objective.item] : []);
       if (
         objectiveItems.length > 0 &&
-        objectiveItems.some(item => [
-          '5696686a4bdc2da3298b456a',
-          '5449016a4bdc2d6f028b456f',
-          '569668774bdc2da2298b4568',
-        ].includes(item.id))
+        objectiveItems.some((item) =>
+          [
+            '5696686a4bdc2da3298b456a',
+            '5449016a4bdc2d6f028b456f',
+            '569668774bdc2da2298b4568',
+          ].includes(item.id)
+        )
       ) {
         return;
       }
