@@ -24,10 +24,8 @@
   consent: {
     title: 'Wir schätzen deine Privatsphäre',
     body: {
-      beforeLink:
-        'TarkovTracker verwendet Analysetools wie Firebase Analytics und Microsoft Clarity, um die Funktionsnutzung zu verstehen und den Dienst zu verbessern. Weitere Informationen findest du in unserer ',
-      afterLink:
-        'Wähle unten, ob Analytics-Tracking aktiviert werden soll. Du kannst deine Entscheidung jederzeit über die Fußzeile ändern.',
+      beforeLink: 'TarkovTracker verwendet Analysetools wie Firebase Analytics und Microsoft Clarity, um die Funktionsnutzung zu verstehen und den Dienst zu verbessern. Weitere Informationen findest du in unserer ',
+      afterLink: 'Wähle unten, ob Analytics-Tracking aktiviert werden soll. Du kannst deine Entscheidung jederzeit über die Fußzeile ändern.',
     },
     privacyLink: 'Datenschutzerklärung',
     actions: {

@@ -40,10 +40,8 @@
   consent: {
     title: '我们重视你的隐私',
     body: {
-      beforeLink:
-        'TarkovTracker 使用 Firebase Analytics 和 Microsoft Clarity 等分析工具来了解功能使用情况并改进服务。你可以在我们的 ',
-      afterLink:
-        '中了解更多信息。请在下方选择是否启用分析追踪。你可以随时在页脚更改此项选择。',
+      beforeLink: 'TarkovTracker 使用 Firebase Analytics 和 Microsoft Clarity 等分析工具来了解功能使用情况并改进服务。你可以在我们的 ',
+      afterLink: '中了解更多信息。请在下方选择是否启用分析追踪。你可以随时在页脚更改此项选择。',
     },
     privacyLink: '隐私政策',
     actions: {
@@ -229,8 +227,8 @@
       options: {
         title: '所需物品选项',
         close: '关闭',
-        items_hide_non_fir: "隐藏不需要在战局中发现的所需物品",
-        items_show_non_fir: "显示不需要在战局中发现的所需物品",
+        items_hide_non_fir: '隐藏不需要在战局中发现的所需物品',
+        items_show_non_fir: '显示不需要在战局中发现的所需物品',
       },
     },
     team: {
@@ -249,16 +247,16 @@
         teamoptions: {
           title: '小队集成选项',
           button: '小队选项',
-          task_hide_all: "隐藏所有小队成员的任务",
-          task_show_all: "显示小队成员的任务",
-          items_hide_all: "隐藏小队成员的所需物品",
-          items_show_all: "显示小队成员的所需物品",
-          items_show_non_fir: "显示所有小队成员的所需物品（包括非战局中发现物）",
+          task_hide_all: '隐藏所有小队成员的任务',
+          task_show_all: '显示小队成员的任务',
+          items_hide_all: '隐藏小队成员的所需物品',
+          items_show_all: '显示小队成员的所需物品',
+          items_show_non_fir: '显示所有小队成员的所需物品（包括非战局中发现物）',
           items_hide_non_fir: '隐藏队友的非战局中发现的所需物品',
-          items_hide_hideout: "隐藏小队成员的藏身处所需物品",
-          items_show_hideout: "显示小队成员的藏身处所需物品",
-          map_hide_all: "隐藏小队成员的地图目标",
-          map_show_all: "显示小队成员的地图目标",
+          items_hide_hideout: '隐藏小队成员的藏身处所需物品',
+          items_show_hideout: '显示小队成员的藏身处所需物品',
+          map_hide_all: '隐藏小队成员的地图目标',
+          map_show_all: '显示小队成员的地图目标',
         },
         myteam: {
           title: '我的小队',
@@ -677,7 +675,7 @@
     },
     team: {
       title: '小队',
-      description: "创建一个小队来与朋友一起追踪进度。你可以分享一个链接让其他人加入你的小队。你将能够看到队友的进度、他们需要的物品，并一起计划战局。",
+      description: '创建一个小队来与朋友一起追踪进度。你可以分享一个链接让其他人加入你的小队。你将能够看到队友的进度、他们需要的物品，并一起计划战局。',
     },
     welcomett3: {
       title: '欢迎使用 TarkovTracker 3！',
@@ -685,7 +683,7 @@
     },
     login: {
       title: '登录',
-      description: "你不需要登录即可使用 TarkovTracker。仅当你想要同步或分享进度时才需要登录。否则，你的数据将安全地保留在浏览器中。",
+      description: '你不需要登录即可使用 TarkovTracker。仅当你想要同步或分享进度时才需要登录。否则，你的数据将安全地保留在浏览器中。',
     },
     hideout: {
       title: '藏身处',

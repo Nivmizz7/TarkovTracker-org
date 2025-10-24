@@ -41,9 +41,11 @@
     title: 'We value your privacy',
     body: {
       beforeLink:
-        'TarkovTracker uses analytics tools like Firebase Analytics and Microsoft Clarity to understand feature usage and improve the service. You can learn more in our ',
+        'TarkovTracker uses analytics tools like Firebase Analytics and Microsoft Clarity ' +
+        'to understand feature usage and improve the service. You can learn more in our ',
       afterLink:
-        'Choose whether to enable analytics tracking below. You can change your choice at any time from the footer.',
+        'Choose whether to enable analytics tracking below. You can change your choice ' +
+        'at any time from the footer.',
     },
     privacyLink: 'Privacy Policy',
     actions: {

@@ -47,7 +47,7 @@ npm run docs             # Build functions + generate docs + show viewing instru
 ### Deployment
 
 ```bash
-npm run deploy:dev       # Deploy to development environment
+npm run deploy:staging   # Deploy to staging preview channel
 npm run deploy:prod      # Deploy to production environment
 ```
 
@@ -98,16 +98,16 @@ npm run deploy:prod      # Deploy to production environment
 
 ### Deployment Scripts
 
-#### `npm run deploy:dev`
+#### `npm run deploy:staging`
 
-- **Purpose**: Deploy to development environment
-- **Process**: Switch to dev Firebase project → Build functions → Generate docs → Build frontend for dev → Deploy
-- **Best for**: Development releases
+- **Purpose**: Deploy to the shared Firebase preview/staging channel
+- **Process**: Build functions → Generate docs → Build frontend → Deploy to `staging` hosting channel (7-day expiry)
+- **Best for**: QA/preview releases before production
 
 #### `npm run deploy:prod`
 
 - **Purpose**: Deploy to production environment
-- **Process**: Switch to prod Firebase project → Build functions → Generate docs → Build frontend for prod → Deploy
+- **Process**: Build functions → Generate docs → Build frontend → Deploy to the active default project
 - **Best for**: Production releases
 
 ### Quality & Maintenance Scripts
@@ -186,10 +186,10 @@ npm run format:check    # Check formatting
 npm run build           # Build everything
 ```
 
-### 4. Deploy to Development
+### 4. Deploy to Staging Preview
 
 ```bash
-npm run deploy:dev      # One command deployment
+npm run deploy:staging  # One command deployment to staging channel
 ```
 
 ### 5. Deploy to Production
