@@ -15,6 +15,7 @@
     "logs": "firebase functions:log",
     "test": "vitest",
     "lint": "eslint .",
+    "type-check": "tsc --noEmit",
     "swagger": "npm run build && node lib/openapi/swagger.js"
   },
   "type": "module",

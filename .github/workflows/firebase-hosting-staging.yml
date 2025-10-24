@@ -7,6 +7,7 @@ on:
       - staging
 permissions:
   contents: read
+  deployments: write
 jobs:
   build_and_deploy_staging:
     runs-on: ubuntu-latest
@@ -19,7 +20,12 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           env: staging
           ref: ${{ github.ref }}
-      - run: npm ci && npm run build
+      - name: Install dependencies
+        run: npm ci
+      - name: Type-check Firebase functions
+        run: npm run type-check --workspace=functions
+      - name: Build project
+        run: npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         id: firebase
         with:
@@ -37,10 +43,10 @@ jobs:
           status: success
           env_url: ${{ steps.firebase.outputs.details_url }}
       - uses: bobheadxi/deployments@v1
-        if: failure()
+        if: failure() && steps.gh-deploy.outputs.deployment_id
         with:
           step: finish
           token: ${{ secrets.GITHUB_TOKEN }}
-          env: ${{ steps.gh-deploy.outputs.env }}
+          env: ${{ steps.gh-deploy.outputs.env || 'staging' }}
           deployment_id: ${{ steps.gh-deploy.outputs.deployment_id }}
           status: failure
