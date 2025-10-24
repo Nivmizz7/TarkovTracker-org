@@ -460,6 +460,8 @@
   },
   navigation_drawer: {
     home: 'Accueil',
+    api: 'API',
+    apidocs: 'API Docs',
     login: 'Log In',
     logout: 'Log Out',
     level: 'Niveau',

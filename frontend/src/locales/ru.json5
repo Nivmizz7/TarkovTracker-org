@@ -439,6 +439,8 @@
   },
   navigation_drawer: {
     home: 'Главная',
+    api: 'API',
+    apidocs: 'API Docs',
     login: 'Войти',
     logout: 'Выйти из системы',
     level: 'Уровень',

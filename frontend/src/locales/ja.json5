@@ -376,6 +376,7 @@
   navigation_drawer: {
     home: 'ダッシュボード',
     api: 'API',
+    apidocs: 'API Docs',
     login: 'ログイン',
     logout: 'ログアウト',
     level: 'レベル',

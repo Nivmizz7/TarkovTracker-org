@@ -435,6 +435,8 @@
   },
   navigation_drawer: {
     home: 'Головна',
+    api: 'API',
+    apidocs: 'API Docs',
     login: 'Увійти',
     logout: 'Вийти із системи',
     level: 'Рівень',
