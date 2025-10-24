@@ -12,10 +12,35 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: bobheadxi/deployments@v1
+        id: gh-deploy
+        with:
+          step: start
+          token: ${{ secrets.GITHUB_TOKEN }}
+          env: staging
+          ref: ${{ github.ref }}
       - run: npm ci && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
+        id: firebase
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_TARKOVTRACKER_ORG }}
           channelId: staging
           projectId: tarkovtracker-org
+      - uses: bobheadxi/deployments@v1
+        if: success()
+        with:
+          step: finish
+          token: ${{ secrets.GITHUB_TOKEN }}
+          env: ${{ steps.gh-deploy.outputs.env }}
+          deployment_id: ${{ steps.gh-deploy.outputs.deployment_id }}
+          status: success
+          env_url: ${{ steps.firebase.outputs.details_url }}
+      - uses: bobheadxi/deployments@v1
+        if: failure()
+        with:
+          step: finish
+          token: ${{ secrets.GITHUB_TOKEN }}
+          env: ${{ steps.gh-deploy.outputs.env }}
+          deployment_id: ${{ steps.gh-deploy.outputs.deployment_id }}
+          status: failure
