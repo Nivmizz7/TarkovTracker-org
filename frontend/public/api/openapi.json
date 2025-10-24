@@ -214,7 +214,9 @@
     "/progress": {
       "get": {
         "summary": "Returns progress data of the player",
-        "tags": ["Progress"],
+        "tags": [
+          "Progress"
+        ],
         "security": [
           {
             "bearerAuth": []
@@ -228,7 +230,10 @@
             "description": "Game mode to get progress for (pvp or pve)",
             "schema": {
               "type": "string",
-              "enum": ["pvp", "pve"],
+              "enum": [
+                "pvp",
+                "pve"
+              ],
               "default": "pvp"
             }
           }
@@ -273,7 +278,9 @@
     "/progress/level/{levelValue}": {
       "post": {
         "summary": "Sets player's level to value specified in the path",
-        "tags": ["Progress"],
+        "tags": [
+          "Progress"
+        ],
         "security": [
           {
             "bearerAuth": []
@@ -298,7 +305,10 @@
             "description": "Game mode to update level for (pvp or pve). Only used for dual-mode tokens; single-mode tokens use their configured game mode.",
             "schema": {
               "type": "string",
-              "enum": ["pvp", "pve"],
+              "enum": [
+                "pvp",
+                "pve"
+              ],
               "default": "pvp"
             }
           }
@@ -345,7 +355,9 @@
     "/progress/task/{taskId}": {
       "post": {
         "summary": "Update the progress state of a single task.",
-        "tags": ["Progress"],
+        "tags": [
+          "Progress"
+        ],
         "description": "Update the progress state of a single task.",
         "security": [
           {
@@ -369,7 +381,10 @@
             "description": "Game mode to update task for (pvp or pve). Only used for dual-mode tokens; single-mode tokens use their configured game mode.",
             "schema": {
               "type": "string",
-              "enum": ["pvp", "pve"],
+              "enum": [
+                "pvp",
+                "pve"
+              ],
               "default": "pvp"
             }
           }
@@ -381,12 +396,18 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["state"],
+                "required": [
+                  "state"
+                ],
                 "properties": {
                   "state": {
                     "type": "string",
                     "description": "The new state of the task.",
-                    "enum": ["uncompleted", "completed", "failed"]
+                    "enum": [
+                      "uncompleted",
+                      "completed",
+                      "failed"
+                    ]
                   }
                 }
               }
@@ -438,7 +459,9 @@
     "/progress/tasks": {
       "post": {
         "summary": "Updates status for multiple tasks",
-        "tags": ["Progress"],
+        "tags": [
+          "Progress"
+        ],
         "security": [
           {
             "bearerAuth": []
@@ -452,7 +475,10 @@
             "description": "Game mode to update tasks for (pvp or pve). Only used for dual-mode tokens; single-mode tokens use their configured game mode.",
             "schema": {
               "type": "string",
-              "enum": ["pvp", "pve"],
+              "enum": [
+                "pvp",
+                "pve"
+              ],
               "default": "pvp"
             }
           }
@@ -466,7 +492,12 @@
                 "description": "Object where keys are task IDs and values are the new status (0-3)",
                 "additionalProperties": {
                   "type": "integer",
-                  "enum": [0, 1, 2, 3]
+                  "enum": [
+                    0,
+                    1,
+                    2,
+                    3
+                  ]
                 },
                 "example": {
                   "task1": 2,
@@ -521,7 +552,9 @@
     "/progress/task/objective/{objectiveId}": {
       "post": {
         "summary": "Update objective progress for a task.",
-        "tags": ["Progress"],
+        "tags": [
+          "Progress"
+        ],
         "description": "Update the progress (state or count) for a specific task objective.",
         "security": [
           {
@@ -545,7 +578,10 @@
             "description": "Game mode to update objective for (pvp or pve). Only used for dual-mode tokens; single-mode tokens use their configured game mode.",
             "schema": {
               "type": "string",
-              "enum": ["pvp", "pve"],
+              "enum": [
+                "pvp",
+                "pve"
+              ],
               "default": "pvp"
             }
           }
@@ -561,7 +597,10 @@
                   "state": {
                     "type": "string",
                     "description": "The new state of the task objective.",
-                    "enum": ["completed", "uncompleted"],
+                    "enum": [
+                      "completed",
+                      "uncompleted"
+                    ],
                     "nullable": true
                   },
                   "count": {
@@ -625,7 +664,9 @@
     "/team/progress": {
       "get": {
         "summary": "Returns progress data of all members of the team",
-        "tags": ["Progress"],
+        "tags": [
+          "Progress"
+        ],
         "security": [
           {
             "bearerAuth": []
@@ -639,7 +680,10 @@
             "description": "Game mode to get team progress for (pvp or pve). Only used for dual-mode tokens; single-mode tokens use their configured game mode.",
             "schema": {
               "type": "string",
-              "enum": ["pvp", "pve"],
+              "enum": [
+                "pvp",
+                "pve"
+              ],
               "default": "pvp"
             }
           }
@@ -693,7 +737,9 @@
     "/team/create": {
       "post": {
         "summary": "Creates a new team",
-        "tags": ["Team"],
+        "tags": [
+          "Team"
+        ],
         "security": [
           {
             "bearerAuth": []
@@ -766,7 +812,9 @@
     "/team/join": {
       "post": {
         "summary": "Join an existing team",
-        "tags": ["Team"],
+        "tags": [
+          "Team"
+        ],
         "security": [
           {
             "bearerAuth": []
@@ -778,7 +826,10 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "required": ["id", "password"],
+                "required": [
+                  "id",
+                  "password"
+                ],
                 "properties": {
                   "id": {
                     "type": "string",
@@ -841,7 +892,9 @@
     "/team/leave": {
       "post": {
         "summary": "Leave current team",
-        "tags": ["Team"],
+        "tags": [
+          "Team"
+        ],
         "security": [
           {
             "bearerAuth": []
@@ -883,7 +936,9 @@
     "/token": {
       "get": {
         "summary": "Returns data associated with the Token given in the Authorization header of the request",
-        "tags": ["Token"],
+        "tags": [
+          "Token"
+        ],
         "security": [
           {
             "bearerAuth": []

@@ -7,7 +7,9 @@
             <h2 class="consent-banner__title">{{ title }}</h2>
             <p class="consent-banner__body">
               {{ beforeLink }}
-              <router-link to="/privacy" class="consent-banner__link">{{ privacyLabel }}</router-link
+              <router-link to="/privacy" class="consent-banner__link">{{
+                privacyLabel
+              }}</router-link
               >.
               {{ afterLink }}
             </p>
