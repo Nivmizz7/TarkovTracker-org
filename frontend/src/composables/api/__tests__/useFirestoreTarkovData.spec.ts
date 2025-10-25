@@ -4,7 +4,7 @@
  */
 
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { ref } from 'vue';
+import { ref, nextTick } from 'vue';
 
 // Mock VueFire BEFORE imports
 const mockUseDocument = vi.fn();
@@ -62,8 +62,8 @@ describe('useFirestoreTarkovItems', () => {
     const { useFirestoreTarkovItems } = await import('../useFirestoreTarkovData');
     const { items, loading, error } = useFirestoreTarkovItems();
 
-    // Wait for watchers to execute
-    await new Promise(resolve => setTimeout(resolve, 10));
+    // Wait for Vue's reactive updates to complete
+    await nextTick();
 
     // Assert
     const { firestore } = await import('@/plugins/firebase');
@@ -90,7 +90,7 @@ describe('useFirestoreTarkovItems', () => {
     useFirestoreTarkovItems();
 
     // Wait for initialization
-    await new Promise(resolve => setTimeout(resolve, 10));
+    await nextTick();
 
     // Assert - verify VueFire useDocument was called
     expect(mockUseDocument).toHaveBeenCalledWith(
@@ -117,7 +117,7 @@ describe('useFirestoreTarkovItems', () => {
     const result3 = useFirestoreTarkovItems();
 
     // Wait for watchers
-    await new Promise(resolve => setTimeout(resolve, 10));
+    await nextTick();
 
     // Assert - useDocument should only be called once (singleton)
     expect(mockUseDocument).toHaveBeenCalledTimes(1);
@@ -143,7 +143,7 @@ describe('useFirestoreTarkovItems', () => {
     const { items, loading, error } = useFirestoreTarkovItems();
 
     // Wait for watchers
-    await new Promise(resolve => setTimeout(resolve, 10));
+    await nextTick();
 
     // Assert
     expect(error.value).toBe(mockError);
@@ -170,7 +170,7 @@ describe('useFirestoreTarkovItems', () => {
     const { items, loading, error } = useFirestoreTarkovItems();
 
     // Wait for watchers
-    await new Promise(resolve => setTimeout(resolve, 10));
+    await nextTick();
 
     // Assert
     expect(items.value).toEqual([]);
@@ -212,7 +212,7 @@ describe('useFirestoreTarkovItems', () => {
     const { items, error } = useFirestoreTarkovItems();
 
     // Wait for watchers
-    await new Promise(resolve => setTimeout(resolve, 10));
+    await nextTick();
 
     // Assert
     expect(items.value).toEqual([]);
@@ -232,7 +232,7 @@ describe('useFirestoreTarkovItems', () => {
     const { error, loading, items } = useFirestoreTarkovItems();
 
     // Wait for error handling
-    await new Promise(resolve => setTimeout(resolve, 10));
+    await nextTick();
 
     // Assert
     expect(error.value).toBe(initError);

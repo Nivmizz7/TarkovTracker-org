@@ -104,7 +104,7 @@ Each epic includes:
 
 **Story Format:**
 
-```
+```markdown
 **Story [EPIC.N]: [Story Title]**
 
 As a [user type],
