@@ -11,11 +11,11 @@ import { useDocument } from 'vuefire';
 import { doc } from 'firebase/firestore';
 import { firestore } from '@/plugins/firebase';
 import { logger } from '@/utils/logger';
-import type { TarkovDataQueryResult } from '@/types/tarkov';
+import type { TarkovDataQueryResult, TarkovItem } from '@/types/tarkov';
 
 // Singleton state for caching
 const isInitialized = ref(false);
-const tarkovItemsCache: Ref<unknown[] | null> = ref(null);
+const tarkovItemsCache: Ref<TarkovItem[] | null> = ref(null);
 const loading = ref(false);
 const error: Ref<Error | null> = ref(null);
 
@@ -39,7 +39,7 @@ export function useFirestoreTarkovItems() {
       const itemsDocRef = doc(firestore, 'tarkovData', 'items');
 
       // Use VueFire's useDocument for reactive Firestore access
-      const firestoreDoc = useDocument<{ items: unknown[] }>(itemsDocRef, {
+      const firestoreDoc = useDocument<{ items: TarkovItem[] }>(itemsDocRef, {
         ssrKey: 'tarkov-items',
       });
 
