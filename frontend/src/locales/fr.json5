@@ -42,7 +42,7 @@
       secondaryviews: {
         available: 'Disponible',
         completed: 'Terminée',
-        locked: 'Vérrouillée',
+        locked: 'Verrouillée',
       },
       userviews: {
         all: 'Toutes',
@@ -50,7 +50,7 @@
       },
       hide_global_tasks: 'Cacher les quêtes globales',
       show_global_tasks: 'Afficher les quêtes globales',
-      hide_non_kappa_tasks: 'Cacher les quêtes  hors Kappa',
+      hide_non_kappa_tasks: 'Cacher les quêtes hors Kappa',
       show_non_kappa_tasks: 'Afficher les quêtes hors Kappa',
       filters: {
         title: 'Filtres de Quêtes',
@@ -91,7 +91,7 @@
       nostationsfound: 'Aucun module trouvé. Essayez de modifier vos filtres ou de mettre à jour votre niveau',
       primaryviews: {
         all: 'Toutes',
-        locked: 'Vérrouillées',
+        locked: 'Verrouillées',
         available: 'Disponibles',
         maxed: 'Niveau max',
       },
@@ -105,11 +105,11 @@
           skill: 'Nécéssite {skillname} niveau {level}',
           trader: 'Nécéssite {tradername} loyauté {loyaltylevel}',
         },
-        gameeditiondescription: 'Le niveaux de planque est calculé en fonction de votre édition de jeu. Vous pouvez changer votre édition de jeu dans les paramètres.',
+        gameeditiondescription: 'Le niveau de planque est calculé en fonction de votre édition de jeu. Vous pouvez changer votre édition de jeu dans les paramètres.',
         settingsbutton: 'Voir les paramètres',
-        upgradebutton: 'Construire | Construire vers {level} | Améliorié vers {level}',
-        downgradebutton: 'Suprimer module | Rétrograder au niveau {level} | Rétrograder au niveau {level}',
-        statusupgraded: 'Améliorié {name} au niveau {level}',
+        upgradebutton: 'Construire | Construire vers {level} | Améliorer vers {level}',
+        downgradebutton: 'Supprimer module | Rétrograder au niveau {level} | Rétrograder au niveau {level}',
+        statusupgraded: 'Améliorier {name} au niveau {level}',
         statusdowngraded: 'Rétrograder {name} au niveau {level}',
       },
     },
@@ -136,7 +136,7 @@
           title: 'Réinitialiser',
           description: 'Réinitialiser toutes les données de progression.',
           button: 'Réinitialiser les données',
-          confirmation: 'Êtes-vous sûr de vouloir réinitialiser toutes vos données de progression? Cette action est irréversible.',
+          confirmation: 'Êtes-vous sûr de vouloir réinitialiser toutes vos données de progression ? Cette action est irréversible.',
           confirmtitle: 'Confirmer la réinitialisation',
           confirmcancelbutton: 'Annuler la réinitialisation',
           confirmresetbutton: 'Réinitialiser les données',
@@ -144,12 +144,12 @@
         gameedition: {
           title: 'Édition du jeu',
           description: "Sélectionnez l'édition du jeu que vous possédez. Cela affectera le calcul de votre niveau de planque et d'autres données",
-          select: "Sélectionner l'édition du jeu",
+          select: "Sélectionnez l'édition du jeu",
         },
         pmcfaction: {
           title: 'Faction SMP',
           description: 'Sélectionnez la faction SMP que vous avez choisie. Cela peut affecter les quêtes disponibles et les objets requis pour les quêtes.',
-          select: 'Sélectionner la faction SMP',
+          select: 'Sélectionnez la faction SMP',
           factions: {
             USEC: 'USEC',
             BEAR: 'BEAR',
@@ -165,7 +165,7 @@
         },
         streamermode: {
           title: 'Mode streamer',
-          description: "Masque les codes d'invitation de votre équipe, afin que vous puissiez montrer vos progrès sans permettre aux gens de rejoindre votre équipe en direct.",
+          description: "Masque les codes d'invitation de votre équipe, afin que vous puissiez montrer votre progression sans permettre aux gens de rejoindre votre équipe en direct.",
           modeOn: 'Activé',
           modeOff: 'Désactivé',
         },
