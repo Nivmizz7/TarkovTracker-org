@@ -2,15 +2,20 @@
 # https://github.com/firebase/firebase-tools
 
 name: Deploy to Firebase Hosting on PR
-on: pull_request
+on:
+  pull_request:
+  workflow_dispatch:
 permissions:
   checks: write
   contents: read
   pull-requests: write
 jobs:
   build_and_preview:
-    # Only run for PRs from the same repository (not forks) to access secrets
-    if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+    # Run for: same-repo PRs, fork PRs with 'approved-for-preview' label, or manual workflow_dispatch
+    if: |
+      github.event.pull_request.head.repo.full_name == github.repository ||
+      contains(github.event.pull_request.labels.*.name, 'approved-for-preview') ||
+      github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
