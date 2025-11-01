@@ -3,12 +3,13 @@
 Thanks for your interest in TarkovTracker! We want to make it easy to find answers and get help when you need it.
 
 ## Self-service resources
+
 - **Documentation** – Start with the [README](README.md) for an overview and check the [`docs/`](docs/) directory for API references.
 - **Changelog** – Review [CHANGELOG.md](CHANGELOG.md) to see what has changed between releases.
 - **Discussions** – Browse [GitHub Discussions](https://github.com/TarkovTracker-org/tarkovtracker/discussions) for community Q&A, feature ideas, and announcements.
 
 ## Ask the community
-- Join the [TarkovTracker.org Discord](https://discord.gg/zx5nsXdEsS) for live chat, play sessions, and quick feedback loops.
+- Join the [TarkovTracker.org Discord](https://discord.gg/M8nBgA2sT6) for live chat, play sessions, and quick feedback loops.
 - Create a new discussion under the `Q&A` or `Ideas` categories.
 - Join informal playtests or co-working sessions announced in the `Events` category.
 - Share tips, builds, or third-party integrations that other players might find helpful.
@@ -19,9 +20,11 @@ Thanks for your interest in TarkovTracker! We want to make it easy to find answe
 - Clearly label the issue (e.g., `bug`, `enhancement`, `documentation`) to help maintainers triage quickly.
 
 ## Security & privacy
+
 If you discover a vulnerability or data exposure, follow our [Security Policy](SECURITY.md) for responsible disclosure. Please do **not** share sensitive findings publicly.
 
 ## Direct contact
+
 - General inquiries: [support@tarkovtracker.org](mailto:support@tarkovtracker.org)
 - Conduct concerns: [report@tarkovtracker.org](mailto:report@tarkovtracker.org)
 - Security incidents: [security@tarkovtracker.org](mailto:security@tarkovtracker.org)
