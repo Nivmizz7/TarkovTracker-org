@@ -31,6 +31,14 @@ jobs:
               return;
             }
 
+            // Check if PR has the approved-for-preview label
+            const hasApprovedLabel = pr.labels.some(label => label.name === 'approved-for-preview');
+            if (hasApprovedLabel) {
+              core.info('✓ PR has approved-for-preview label - trusted');
+              core.setOutput('trusted', 'true');
+              return;
+            }
+
             // Otherwise, check if PR author is a collaborator
             try {
               await github.rest.repos.checkCollaborator({
@@ -42,7 +50,7 @@ jobs:
               core.setOutput('trusted', 'true');
             } catch (err) {
               core.warning(`✗ PR author @${pr.user.login} is not a collaborator - untrusted`);
-              core.warning('Skipping preview deploy to protect secrets. Add user as collaborator to enable previews.');
+              core.warning('Skipping preview deploy to protect secrets. Add approved-for-preview label or add user as collaborator to enable previews.');
               core.setOutput('trusted', 'false');
             }
 
@@ -50,7 +58,7 @@ jobs:
         if: steps.guard.outputs.trusted != 'true'
         run: |
           echo "::notice::Untrusted fork PR detected - preview deployment skipped for security"
-          echo "To enable preview: PR author must be added as a repository collaborator"
+          echo "To enable preview: Add 'approved-for-preview' label or add author as a repository collaborator"
           exit 0
 
       - name: Checkout PR code
