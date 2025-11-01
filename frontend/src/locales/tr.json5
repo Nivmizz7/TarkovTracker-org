@@ -152,11 +152,11 @@
       },
     },
     settings: {
-      title: 'API',
+      title: 'Ayarlar',
       card: {
         apitokens: {
           title: 'API Anahtarları',
-          description: 'TarkovTracker, burada sakladığınız ilerleme verilerine erişmek için herkese açık bir API sunar. Diğer araçların verilerinize erişmesine izin vermek için bir API anahtarı oluşturabilirsiniz. {openAPI_documentation} sayfasını görüntüleyin.',
+          description: 'İlerleme verilerinize üçüncü taraf araçların erişmesine izin vermek için API anahtarları oluşturun. Ayrıntılar için {openAPI_documentation} sayfasını görüntüleyin.',
           new_token_expand: 'Anahtar oluştur',
           submit_new_token: 'Anahtar oluştur',
           openAPI_documentation: 'OpenAPI belgeleri',
@@ -176,6 +176,51 @@
             WP: 'İlerleme Yaz',
           },
         },
+      },
+      fields: {
+        game_edition: 'Oyun Sürümü',
+        streamer_privacy_mode: 'Yayıncı/Gizlilik Modu',
+      },
+      cards: {
+        profile: {
+          title: 'Profil Tercihleri',
+          description: 'Escape from Tarkov profilinizi etkileyen nadiren değiştirilen seçenekleri ayarlayın.',
+          streamer_privacy_hint: 'Paylaşılan görünümlerde kimliğinizi gizlemek için bunu etkinleştirin, yayın yapmak veya ek gizlilik için idealdir.',
+        },
+        progress: {
+          title: 'İlerleme Yönetimi',
+          description: 'PvP veya PvE takibini yeniden başlatmak istediğinizde mod başına ilerlemeyi sıfırlayın.',
+          login_required: 'Oyun modu sıfırlamalarını yönetmek için giriş yapın.',
+          reset_pvp: 'PvP Verilerini Sıfırla',
+          reset_pve: 'PvE Verilerini Sıfırla',
+        },
+        account_reset: {
+          title: 'Tam Hesap Sıfırlama',
+          description: 'Tüm oyun modlarında tüm takip edilen verileri, ayarları ve önbelleğe alınmış tercihleri tamamen silin.',
+          button: 'Tam Hesap Sıfırlama',
+        },
+      },
+      dialogs: {
+        reset_mode: {
+          title: '{mode} Verilerini Sıfırla',
+          description: '{mode} için takip edilen tüm ilerlemeyi kaldırmak istediğinizden emin misiniz? Bu, o mod için görevleri, öğeleri ve sığınak verilerini temizler.',
+          warning: 'Bu işlem geri alınamaz.',
+          confirm: '{mode} Sıfırla',
+        },
+        full_reset: {
+          title: 'Tam Hesap Sıfırlamayı Onayla',
+          warning: 'Bu, yerel önbellek dahil saklanan her veriyi kalıcı olarak siler.',
+          description: 'TarkovTracker hesabınız yepyeni bir duruma geri yüklenecek.',
+          confirm: 'Her Şeyi Sil',
+        },
+      },
+      options: {
+        edition_standard: 'Standart Sürüm',
+        edition_left_behind: 'Left Behind Sürüm',
+        edition_prepare_escape: 'Prepare for Escape Sürüm',
+        edition_edge_darkness: 'Edge of Darkness Sürüm (Sınırlı Sürüm)',
+        edition_unheard: 'Unheard Sürüm',
+        edition_unheard_eod: 'Unheard + Edge Of Darkness (EOD) Sürüm',
       },
     },
     team: {

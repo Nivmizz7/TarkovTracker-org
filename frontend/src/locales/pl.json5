@@ -152,11 +152,11 @@
       },
     },
     settings: {
-      title: 'API',
+      title: 'Ustawienia',
       card: {
         apitokens: {
           title: 'Tokeny API',
-          description: 'TarkovTracker udostępnia publiczne API, które pozwala innym narzędziom uzyskać dostęp do przechowywanego tu postępu. Możesz wygenerować token API, aby inne narzędzia mogły uzyskać dostęp do twoich danych. Zobacz {openAPI_documentation}',
+          description: 'Generuj tokeny API, aby umożliwić narzędziom zewnętrznym dostęp do twoich danych postępu. Zobacz {openAPI_documentation} po szczegóły.',
           new_token_expand: 'Utwórz token',
           submit_new_token: 'Utwórz token',
           openAPI_documentation: 'Dokumentacja OpenAPI',
@@ -176,6 +176,51 @@
             WP: 'Zapisz postęp',
           },
         },
+      },
+      fields: {
+        game_edition: 'Edycja gry',
+        streamer_privacy_mode: 'Tryb streamera/Prywatności',
+      },
+      cards: {
+        profile: {
+          title: 'Preferencje profilu',
+          description: 'Dostosuj rzadko zmieniane opcje wpływające na twój profil Escape from Tarkov.',
+          streamer_privacy_hint: 'Włącz to, aby ukryć swoją tożsamość w udostępnionych widokach, idealne do streamowania lub zwiększenia prywatności.',
+        },
+        progress: {
+          title: 'Zarządzanie postępem',
+          description: 'Resetuj postęp dla danego trybu, gdy chcesz zacząć od nowa ze śledzeniem PvP lub PvE.',
+          login_required: 'Zaloguj się, aby zarządzać resetowaniem trybów gry.',
+          reset_pvp: 'Zresetuj dane PvP',
+          reset_pve: 'Zresetuj dane PvE',
+        },
+        account_reset: {
+          title: 'Pełny reset konta',
+          description: 'Całkowicie wyczyść wszystkie śledzone dane, ustawienia i zapisane preferencje we wszystkich trybach gry.',
+          button: 'Pełny reset konta',
+        },
+      },
+      dialogs: {
+        reset_mode: {
+          title: 'Zresetuj dane {mode}',
+          description: 'Czy na pewno chcesz usunąć cały śledzony postęp dla {mode}? To czyści zadania, przedmioty i dane kryjówki dla tego trybu.',
+          warning: 'Tej operacji nie można cofnąć.',
+          confirm: 'Zresetuj {mode}',
+        },
+        full_reset: {
+          title: 'Potwierdź pełny reset konta',
+          warning: 'To trwale usunie każdy bit przechowywanych danych, w tym pamięć podręczną lokalną.',
+          description: 'Twoje konto TarkovTracker zostanie przywrócone do zupełnie nowego stanu.',
+          confirm: 'Usuń wszystko',
+        },
+      },
+      options: {
+        edition_standard: 'Edycja Standard',
+        edition_left_behind: 'Edycja Left Behind',
+        edition_prepare_escape: 'Edycja Prepare for Escape',
+        edition_edge_darkness: 'Edycja Edge of Darkness (Limited Edition)',
+        edition_unheard: 'Edycja Unheard',
+        edition_unheard_eod: 'Edycja Unheard + Edge Of Darkness (EOD)',
       },
     },
     team: {
