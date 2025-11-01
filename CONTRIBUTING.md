@@ -10,7 +10,7 @@ The guidelines below explain how to participate effectively and respectfully. If
 
 - **Familiarize yourself with the project** – Read the [README](README.md) and explore the application so you understand what exists today.
 - **Search first** – Look for existing issues, pull requests, or discussions that relate to your idea. Commenting on an active thread helps consolidate effort.
-- **Talk to us** – For substantial changes (e.g., major refactors, architectural changes), start a [GitHub Discussion](https://github.com/TarkovTracker-org/tarkovtracker/discussions), chat in the [TarkovTracker.org Discord](https://discord.gg/zx5nsXdEsS), or open an issue to align with the maintainers before investing significant time.
+- **Talk to us** – For substantial changes (e.g., major refactors, architectural changes), start a [GitHub Discussion](https://github.com/TarkovTracker-org/tarkovtracker/discussions), chat in the [TarkovTracker.org Discord](https://discord.gg/M8nBgA2sT6), or open an issue to align with the maintainers before investing significant time.
 - **Be kind** – Participation in this community is covered by our [Code of Conduct](CODE_OF_CONDUCT.md). If you observe unacceptable behavior, email [report@tarkovtracker.org](mailto:report@tarkovtracker.org).
 
 ## Ways to contribute
